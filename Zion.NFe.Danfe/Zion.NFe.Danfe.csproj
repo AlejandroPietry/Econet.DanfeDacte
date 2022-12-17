@@ -9,8 +9,8 @@ Feito em netstandard2.0 é multiplataforma.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Copyright>Copyright ©  2022</Copyright>
     <NeutralLanguage>pt-BR</NeutralLanguage>
-    <PackageProjectUrl></PackageProjectUrl>
-    <RepositoryUrl></RepositoryUrl>
+    <PackageProjectUrl>https://www.nuget.org/packages/Econet.DanfeDacte</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AlejandroPietry/Econet.DanfeDacte</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Danfe Nfe Dacte Dfe Cte </PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>

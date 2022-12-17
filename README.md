@@ -1,3 +1,5 @@
+### Econet DacteDanfe é uma biblioteca em C# que permite a geração do DANFE e do DACTE em formato PDF. Com muitas possibilidades! Feito em netstandard2.0 é multiplataforma.
+
 ### Exemplo para gerar Dacte
 ```C#
 byte[] pdfBytes;
