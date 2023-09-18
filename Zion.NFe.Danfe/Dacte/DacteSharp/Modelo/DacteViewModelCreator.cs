@@ -1115,7 +1115,7 @@ namespace DacteSharp.Modelo
                             cteIsolado.TImpOSICMS90 icms90 = (cteIsolado.TImpOSICMS90)infCte.ICMS.Item;
                             informacoesImpostosViewModel.BaseCalculo = double.Parse(icms90.vBC.Replace(".", ","));
                             informacoesImpostosViewModel.AliquotaIcms = double.Parse(icms90.pICMS.Replace(".", ","));
-                            informacoesImpostosViewModel.ValorIcms = double.Parse(icms90.pRedBC.Replace(".", ","));
+                            informacoesImpostosViewModel.ValorIcms = string.IsNullOrEmpty(icms90.pRedBC) ? 0 : double.Parse(icms90.pRedBC.Replace(".", ","));
                             informacoesImpostosViewModel.RedBcCalcIcms = double.Parse(icms90.pICMS.Replace(".", ","));
                         }
                         else if (infCte.ICMS.Item.GetType() == typeof(cteIsolado.TImpOSICMSOutraUF))
