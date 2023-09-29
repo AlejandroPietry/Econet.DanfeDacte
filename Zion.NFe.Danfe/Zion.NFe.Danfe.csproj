@@ -14,9 +14,9 @@ Feito em netstandard2.0 é multiplataforma.</Description>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Danfe Nfe Dacte Dfe Cte </PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
-    <Version>2.0.0.0</Version>
+    <AssemblyVersion>2.1.0.1</AssemblyVersion>
+    <FileVersion>2.1.0.1</FileVersion>
+    <Version>2.1.0.1</Version>
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
