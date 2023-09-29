@@ -254,7 +254,7 @@ namespace DanfeSharp.Esquemas.NFe
     public class ImpostoICMS51 : ImpostoICMS { }
     public class ImpostoICMS53 : ImpostoICMS { }
     public class ImpostoICMS60 : ImpostoICMS { }
-  //  public class ImpostoICMS61 : ImpostoICMS { }
+    public class ImpostoICMS61 : ImpostoICMS { }
     public class ImpostoICMS70 : ImpostoICMS { }
     public class ImpostoICMS90 : ImpostoICMS { }
     public class ImpostoICMSPart : ImpostoICMS { }
@@ -281,7 +281,7 @@ namespace DanfeSharp.Esquemas.NFe
         [XmlElement("ICMS51", typeof(ImpostoICMS51))]
         [XmlElement("ICMS53", typeof(ImpostoICMS53))]
         [XmlElement("ICMS60", typeof(ImpostoICMS60))]
-        //[XmlElement("ICMS61", typeof(ImpostoICMS61))]
+        [XmlElement("ICMS61", typeof(ImpostoICMS61))]
         [XmlElement("ICMS70", typeof(ImpostoICMS70))]
         [XmlElement("ICMS90", typeof(ImpostoICMS90))]
         [XmlElement("ICMSPart", typeof(ImpostoICMSPart))]
