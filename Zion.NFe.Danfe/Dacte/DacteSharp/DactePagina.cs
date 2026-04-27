@@ -48,7 +48,7 @@ namespace DacteSharp
 
         public void DesenharCreditos()
         {
-            Gfx.DrawString(string.Format("Impresso em {0} as {1}", DateTime.Now.ToString("dd/MM/yyy"), DateTime.Now.ToString("hh:mm:ss")), RetanguloCreditos, Dacte.EstiloPadrao.CriarFonteItalico(6), AlinhamentoHorizontal.Esquerda);
+            Gfx.DrawString($"{Strings.TextoCreditos}", RetanguloCreditos, Dacte.EstiloPadrao.CriarFonteItalico(6), AlinhamentoHorizontal.Esquerda);
         }
 
         private void DesenharCanhoto()

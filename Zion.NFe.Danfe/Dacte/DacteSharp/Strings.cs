@@ -19,5 +19,6 @@
         public const string TextoConsulta = "Consulta de autenticidade no portal nacional do CT-e, no site da Sefaz Autorizadora, ou em www.cte.fazenda.gov.br";
         public const string Nome = "Nome";
         public const string Valor = "Valor";
+        public static string TextoCreditos = "Desenvolvido por [ www.fiscalsync.com.br ]";
     }
 }
