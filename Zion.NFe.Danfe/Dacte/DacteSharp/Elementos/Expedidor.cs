@@ -28,7 +28,7 @@ namespace DacteSharp
             Fonte f3 = Estilo.CriarFonteRegular(6);
 
             var expedidor = ViewModel.Expedidor;
-            var ts = new TextStack(rp) { LineHeightScale = 1.5F }
+            var ts = new TextStack(rp) { LineHeightScale = 1.5F, VerticalOffset = Estilo.OffsetConteudoCampo }
                 .AddLine($"{Strings.Expedidor.PadRight(18, ' ')}{expedidor.xNome}", f3)
                 .AddLine($"{Strings.Endereco.PadRight(21, ' ')}{FormatadorDacte.LogradouroCompleto(expedidor.enderExped.xLgr, expedidor.enderExped.nro, expedidor.enderExped.xCpl)}", f3)
                 .AddLine($"{string.Empty.PadRight(35, ' ')}{expedidor.enderExped.xBairro}", f3)

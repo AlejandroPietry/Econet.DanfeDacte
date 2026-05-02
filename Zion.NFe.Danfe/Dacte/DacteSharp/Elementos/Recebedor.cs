@@ -29,7 +29,7 @@ namespace DacteSharp
             Fonte f3 = Estilo.CriarFonteRegular(6);
 
             var recebedor = ViewModel.Recebedor;
-            var ts = new TextStack(rp) { LineHeightScale = 1.5F }
+            var ts = new TextStack(rp) { LineHeightScale = 1.5F, VerticalOffset = Estilo.OffsetConteudoCampo }
                 .AddLine($"{Strings.Recebedor.PadRight(18, ' ')}{recebedor.xNome}", f3)
                 .AddLine($"{Strings.Endereco.PadRight(19, ' ')}{FormatadorDacte.LogradouroCompleto(recebedor.enderReceb.xLgr, recebedor.enderReceb.nro, recebedor.enderReceb.xCpl)}", f3)
                 .AddLine($"{string.Empty.PadRight(33, ' ')}{recebedor.enderReceb.xBairro}", f3)

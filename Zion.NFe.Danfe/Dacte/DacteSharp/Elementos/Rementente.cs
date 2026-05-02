@@ -30,7 +30,7 @@ namespace DacteSharp
             Fonte f3 = Estilo.CriarFonteRegular(6);
 
             var rementente = ViewModel.Remetente;
-            var ts = new TextStack(rp) { LineHeightScale = 1.5F }
+            var ts = new TextStack(rp) { LineHeightScale = 1.5F, VerticalOffset = Estilo.OffsetConteudoCampo }
                 .AddLine($"{Strings.Remetente.PadRight(18, ' ')}{(!String.IsNullOrWhiteSpace(rementente.xNome) ? rementente.xNome.Trim() : rementente.xFant.Trim())}", f3)
                 .AddLine($"{Strings.Endereco.PadRight(19, ' ')}{FormatadorDacte.LogradouroCompleto(rementente.enderReme.xLgr, rementente.enderReme.nro, rementente.enderReme.xCpl)}", f3)
                 .AddLine($"{string.Empty.PadRight(33, ' ')} {rementente.enderReme.xBairro}", f3)
