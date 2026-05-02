@@ -24,6 +24,7 @@ Feito em netstandard2.0 é multiplataforma.</Description>
     <Product>Econet.DanfeDacte</Product>
     <PackageIcon>document_paperclip_list_paper_icon_219514.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,7 +39,18 @@ Feito em netstandard2.0 é multiplataforma.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PdfClown.NetStandard" Version="0.2.0-beta" />
+    <Reference Include="PdfSharpCore">
+      <HintPath>$(USERPROFILE)\.nuget\packages\pdfsharpcore\1.3.67\lib\netstandard2.0\PdfSharpCore.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts">
+      <HintPath>$(USERPROFILE)\.nuget\packages\sixlabors.fonts\1.0.0-beta17\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.ImageSharp">
+      <HintPath>$(USERPROFILE)\.nuget\packages\sixlabors.imagesharp\1.0.4\lib\netstandard2.0\SixLabors.ImageSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>$(USERPROFILE)\.nuget\packages\sharpziplib\1.4.2\lib\netstandard2.0\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
