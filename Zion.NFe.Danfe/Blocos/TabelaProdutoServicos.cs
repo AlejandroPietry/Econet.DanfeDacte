@@ -49,6 +49,7 @@ namespace Zion.NFe.Danfe.Blocos
             }
             if (ViewModel.Orientacao == Orientacao.Paisagem)
             {
+                Tabela.OffsetCabecalho = 1.8F;
                 Tabela
                 .ComColuna(8.1f, ac, "CÓDIGO PRODUTO")
                 .ComColuna(0, ae, "DESCRIÇÃO DO PRODUTO / SERVIÇO")

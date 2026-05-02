@@ -17,6 +17,7 @@ namespace Zion.NFe.Danfe.Elementos
         public float PaddingInferior { get; private set; }
         public float PaddingHorizontal { get; private set; }
         public float OffsetConteudoCorpo { get; set; }
+        public float OffsetCabecalho { get; set; }
 
         public int LinhaAtual { get; private set; }
         public float TamanhoFonteCabecalho { get; private set; }
@@ -38,6 +39,7 @@ namespace Zion.NFe.Danfe.Elementos
             PaddingSuperior = 0.75F;
             PaddingInferior = 0.3F;
             OffsetConteudoCorpo = TextBlock.DefaultVerticalOffset;
+            OffsetCabecalho = 1.8F;// TextStack.DefaultVerticalOffset;
 
             // 7.7.7 Conteúdo dos Campos do Quadro “Dados dos Produtos/Serviços”
             // Deverá ter tamanho mínimo de seis(6) pontos, ou 17 CPP.
@@ -132,6 +134,7 @@ namespace Zion.NFe.Danfe.Elementos
                 var tb = new TextStack(r.InflatedRetangle(1F));
                 tb.AlinhamentoVertical = AlinhamentoVertical.Centro;
                 tb.AlinhamentoHorizontal = AlinhamentoHorizontal.Centro;
+                tb.VerticalOffset = OffsetCabecalho;
 
                 foreach (var item in coluna.Cabecalho)
                 {
