@@ -35,17 +35,17 @@ namespace Zion.NFe.Danfe.Elementos
         public Estilo(pcf.Font fontRegular, pcf.Font fontBold, pcf.Font fontItalic, float tamanhoFonteCampoCabecalho = 6, float tamanhoFonteConteudo = 10)
         {
             PaddingHorizontal = 0.75F;
-            PaddingSuperior = 0.65F;
-            PaddingInferior = 0.3F;
-            OffsetCabecalhoCampo = 0.35F;
-            OffsetConteudoCampo = 0.55F;
-            OffsetTextoSimples = 0.35F;
-            OffsetCabecalhoBloco = 0.55F;
-            OffsetCabecalhoCampoCentralizado = 0.55F;
+            PaddingSuperior = 0.9F;
+            PaddingInferior = 0.2F;
+            OffsetCabecalhoCampo = 0.9F;
+            OffsetConteudoCampo = 0.9F;
+            OffsetTextoSimples = 0.9F;
+            OffsetCabecalhoBloco = 0.9F;
+            OffsetCabecalhoCampoCentralizado = 0.9F;
             OffsetSiglaDocumento = 3.0F;
-            OffsetTituloDocumentoPrincipal = 0.55F;
-            OffsetSubtituloDocumentoPrincipal = 0.4F;
-            OffsetIdentificacaoEmitente = 0.35F;
+            OffsetTituloDocumentoPrincipal = 0.9F;
+            OffsetSubtituloDocumentoPrincipal = 0.9F;
+            OffsetIdentificacaoEmitente = 0.9F;
 
             FonteInternaRegular = fontRegular;
             FonteInternaNegrito = fontBold;
