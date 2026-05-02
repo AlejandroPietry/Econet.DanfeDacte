@@ -13,7 +13,7 @@
         public const string FoneFax = "Fone / Fax";
         public const string Cep = "CEP";
         public const string BairroDistrito = "Bairro";
-        public const string TextoConsulta = "Consulta de autenticidade no portal nacional da NF-e www.nfe.fazenda.gov.br/portal ou no site da Sefaz Autorizadora";
+        public const string TextoConsulta = "Consulta de autenticidade no portal nacional da NF-e ou no site da Sefaz Autorizadora";
         public static string TextoCreditos = "Desenvolvido por [ www.fiscalsync.com.br ]";
     }
 }
