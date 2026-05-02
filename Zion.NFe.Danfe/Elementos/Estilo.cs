@@ -37,7 +37,7 @@ namespace Zion.NFe.Danfe.Elementos
             PaddingHorizontal = 0.75F;
             PaddingSuperior = 0.9F;
             PaddingInferior = 0.2F;
-            OffsetCabecalhoCampo = 0.9F;
+            OffsetCabecalhoCampo = 1.2F;
             OffsetConteudoCampo = 3.0F;
             OffsetTextoSimples = 3.2F;
             OffsetCabecalhoBloco = 0.9F;

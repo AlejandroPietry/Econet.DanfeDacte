@@ -26,6 +26,7 @@ namespace Zion.NFe.Danfe.Blocos
             var ae = AlinhamentoHorizontal.Esquerda;
 
             Tabela = new Tabela(Estilo);
+            Tabela.OffsetConteudoCorpo = Estilo.OffsetConteudoCampo;
             var cabecalho4 = ViewModel.Emitente.CRT == "3" ? "O/CST" : "O/CSOSN";
 
             if (ViewModel.Orientacao == Orientacao.Retrato)

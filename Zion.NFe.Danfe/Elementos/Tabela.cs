@@ -16,6 +16,7 @@ namespace Zion.NFe.Danfe.Elementos
         public float PaddingSuperior { get; private set; }
         public float PaddingInferior { get; private set; }
         public float PaddingHorizontal { get; private set; }
+        public float OffsetConteudoCorpo { get; set; }
 
         public int LinhaAtual { get; private set; }
         public float TamanhoFonteCabecalho { get; private set; }
@@ -36,6 +37,7 @@ namespace Zion.NFe.Danfe.Elementos
             PaddingHorizontal = 0.6F;
             PaddingSuperior = 0.75F;
             PaddingInferior = 0.3F;
+            OffsetConteudoCorpo = TextBlock.DefaultVerticalOffset;
 
             // 7.7.7 Conteúdo dos Campos do Quadro “Dados dos Produtos/Serviços”
             // Deverá ter tamanho mínimo de seis(6) pontos, ou 17 CPP.
@@ -91,6 +93,7 @@ namespace Zion.NFe.Danfe.Elementos
                         Width = w - 2F * Estilo.PaddingHorizontal,
                         X = x + PaddingHorizontal,
                         Y = _DY + PaddingSuperior,
+                        VerticalOffset = OffsetConteudoCorpo,
                         AlinhamentoHorizontal = c.AlinhamentoHorizontal
                     };
                 }
