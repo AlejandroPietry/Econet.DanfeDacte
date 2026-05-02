@@ -21,7 +21,7 @@ namespace Zion.NFe.Danfe.Elementos
         public override void Draw(Gfx gfx)
         {
             base.Draw(gfx);
-            System.Drawing.RectangleF retanguloCabecalho = BoundingBox.MoveDown(Estilo.OffsetCabecalhoBloco);
+            System.Drawing.RectangleF retanguloCabecalho = BoundingBox.MoveDown(Estilo.OffsetCabecalhoBlocoDanfe);
             gfx.DrawString(Cabecalho.ToUpper(), retanguloCabecalho, Estilo.FonteBlocoCabecalho,
                 AlinhamentoHorizontal.Esquerda, AlinhamentoVertical.Base);
         }

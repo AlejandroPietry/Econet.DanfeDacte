@@ -44,7 +44,8 @@ namespace Zion.NFe.Danfe
 
         public void DesenharCreditos()
         {
-            Gfx.DrawString($"{Strings.TextoCreditos}", RetanguloCreditos, Danfe.EstiloPadrao.CriarFonteItalico(6), AlinhamentoHorizontal.Direita);
+            var retanguloCreditos = RetanguloCreditos.MoveDown(Danfe.EstiloPadrao.OffsetCreditosDanfe);
+            Gfx.DrawString($"{Strings.TextoCreditos}", retanguloCreditos, Danfe.EstiloPadrao.CriarFonteItalico(6), AlinhamentoHorizontal.Direita);
         }
 
         private void DesenharCanhoto()
