@@ -91,7 +91,7 @@ namespace Zion.NFe.Danfe
             if (total <= 0) throw new ArgumentOutOfRangeException(nameof(n));
             if (n > total) throw new ArgumentOutOfRangeException("O número da página atual deve ser menor que o total.");
 
-            Gfx.DrawString($"Folha {n}/{total}", RetanguloNumeroFolhas, Danfe.EstiloPadrao.FonteNumeroFolhas, AlinhamentoHorizontal.Centro);
+            Gfx.DrawString($"Folha {n}/{total}", RetanguloNumeroFolhas.MoveDown(Danfe.EstiloPadrao.OffsetNumeroFolhasDanfe), Danfe.EstiloPadrao.FonteNumeroFolhas, AlinhamentoHorizontal.Centro);
             Gfx.Flush();
         }
 

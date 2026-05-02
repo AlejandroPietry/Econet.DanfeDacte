@@ -23,6 +23,10 @@ namespace Zion.NFe.Danfe.Elementos
         public float OffsetSubtituloDocumentoPrincipal { get; set; }
         public float OffsetIdentificacaoEmitente { get; set; }
         public float OffsetCreditosDanfe { get; set; }
+        public float OffsetNumeroFolhasDanfe { get; set; }
+        public float OffsetTituloDanfePrincipal { get; set; }
+        public float OffsetTipoNfDanfe { get; set; }
+        public float OffsetNumeroSerieDanfe { get; set; }
 
         public pcf.Font FonteInternaRegular { get; set; }
         public pcf.Font FonteInternaNegrito { get; set; }
@@ -50,6 +54,10 @@ namespace Zion.NFe.Danfe.Elementos
             OffsetSubtituloDocumentoPrincipal = 0.9F;
             OffsetIdentificacaoEmitente = 0.9F;
             OffsetCreditosDanfe = 0.9F;
+            OffsetNumeroFolhasDanfe = 4.2F;
+            OffsetTituloDanfePrincipal = 2.0F;
+            OffsetTipoNfDanfe = 3.0F;
+            OffsetNumeroSerieDanfe = 6.0F;
 
             FonteInternaRegular = fontRegular;
             FonteInternaNegrito = fontBold;

@@ -43,7 +43,7 @@ namespace Zion.NFe.Danfe.Elementos
 
             var f1 = Estilo.CriarFonteNegrito(12);
             var f1h = f1.AlturaLinha;
-            gfx.DrawString("DANFE", rp2, f1, AlinhamentoHorizontal.Centro);
+            gfx.DrawString("DANFE", rp2.MoveDown(Estilo.OffsetTituloDanfePrincipal), f1, AlinhamentoHorizontal.Centro);
 
             rp2 = rp2.CutTop(f1h + 0.5F);
 
@@ -78,7 +78,7 @@ namespace Zion.NFe.Danfe.Elementos
 
             gfx.StrokeRectangle(rectEs, 0.25F);
 
-            gfx.DrawString(ViewModel.TipoNF.ToString(), rectEs, Estilo.FonteNumeroFolhas, AlinhamentoHorizontal.Centro, AlinhamentoVertical.Centro);
+            gfx.DrawString(ViewModel.TipoNF.ToString(), rectEs.MoveDown(Estilo.OffsetTipoNfDanfe), Estilo.FonteNumeroFolhas, AlinhamentoHorizontal.Centro, AlinhamentoVertical.Centro);
 
 
             var f4 = Estilo.FonteNumeroFolhas;
@@ -91,7 +91,7 @@ namespace Zion.NFe.Danfe.Elementos
             {
                 AlinhamentoVertical = AlinhamentoVertical.Topo,
                 AlinhamentoHorizontal = AlinhamentoHorizontal.Centro,
-                VerticalOffset = Estilo.OffsetSubtituloDocumentoPrincipal
+                VerticalOffset = Estilo.OffsetSubtituloDocumentoPrincipal + Estilo.OffsetNumeroSerieDanfe
             }
             .AddLine("Nº.: " + ViewModel.NfNumero.ToString(Formatador.FormatoNumeroNF), f4)
             .AddLine($"Série: {ViewModel.NfSerie}", f4);
