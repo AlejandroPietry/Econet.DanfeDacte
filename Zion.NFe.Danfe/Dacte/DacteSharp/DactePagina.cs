@@ -33,9 +33,6 @@ namespace DacteSharp
             PrimitiveComposer = new PrimitiveComposer(PdfPage);
             Gfx = new Gfx(PrimitiveComposer);
 
-            PrimitiveComposer = new PrimitiveComposer(PdfPage);
-            Gfx = new Gfx(PrimitiveComposer);
-
             if (Dacte.ViewModel.Orientacao == Orientacao.Retrato)
                 Retangulo = new RectangleF(0, 0, Constantes.A4Largura, Constantes.A4Altura);
             else
