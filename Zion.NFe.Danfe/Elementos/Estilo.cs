@@ -14,6 +14,7 @@ namespace Zion.NFe.Danfe.Elementos
         public float FonteTamanhoMinimo { get; set; }
         public float OffsetCabecalhoCampo { get; set; }
         public float OffsetConteudoCampo { get; set; }
+        public float OffsetConteudoCampoMultilinha { get; set; }
         public float OffsetTextoSimples { get; set; }
         public float OffsetCabecalhoBloco { get; set; }
         public float OffsetCabecalhoBlocoDanfe { get; set; }
@@ -45,6 +46,7 @@ namespace Zion.NFe.Danfe.Elementos
             PaddingInferior = 0.2F;
             OffsetCabecalhoCampo = 1.2F;
             OffsetConteudoCampo = 3.0F;
+            OffsetConteudoCampoMultilinha = 1.2F;
             OffsetTextoSimples = 3.2F;
             OffsetCabecalhoBloco = 0.9F;
             OffsetCabecalhoBlocoDanfe = 1.6F;

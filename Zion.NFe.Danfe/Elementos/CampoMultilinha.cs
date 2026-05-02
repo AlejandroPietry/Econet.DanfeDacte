@@ -22,7 +22,7 @@ namespace Zion.NFe.Danfe.Elementos
         {
             if (!string.IsNullOrWhiteSpace(Conteudo))
             {
-                _tbConteudo.SetPosition(RetanguloDesenhvael.X, RetanguloDesenhvael.Y + Estilo.FonteCampoCabecalho.AlturaLinha + Estilo.PaddingInferior);
+                _tbConteudo.SetPosition(RetanguloDesenhvael.X, RetanguloDesenhvael.Y + Estilo.FonteCampoCabecalho.AlturaLinha + Estilo.PaddingInferior + Estilo.OffsetConteudoCampoMultilinha);
                 _tbConteudo.Draw(gfx);
             }
         }
@@ -31,7 +31,7 @@ namespace Zion.NFe.Danfe.Elementos
         {
             get
             {
-                return Math.Max(_tbConteudo.Height + Estilo.FonteCampoCabecalho.AlturaLinha + Estilo.PaddingSuperior + 2 * Estilo.PaddingInferior, base.Height);
+                return Math.Max(_tbConteudo.Height + Estilo.FonteCampoCabecalho.AlturaLinha + Estilo.PaddingSuperior + 2 * Estilo.PaddingInferior + Estilo.OffsetConteudoCampoMultilinha, base.Height);
             }
             set
             {
