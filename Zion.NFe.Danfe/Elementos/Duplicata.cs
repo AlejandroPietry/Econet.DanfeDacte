@@ -28,7 +28,8 @@ namespace Zion.NFe.Danfe.Elementos
         {
             base.Draw(gfx);
 
-            var r = BoundingBox.InflatedRetangle(Estilo.PaddingSuperior, Estilo.PaddingInferior, Estilo.PaddingHorizontal);
+            var r = BoundingBox.InflatedRetangle(Estilo.PaddingSuperior, Estilo.PaddingInferior, Estilo.PaddingHorizontal)
+                .MoveDown(Estilo.OffsetConteudoCampo);
 
             string[] valores = { ViewModel.Numero, ViewModel.Vecimento.Formatar(), ViewModel.Valor.FormatarMoeda() };
 

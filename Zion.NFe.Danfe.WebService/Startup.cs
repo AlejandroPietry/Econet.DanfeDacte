@@ -27,8 +27,6 @@ namespace ZionDanfe.WebService
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             //app.UseAuthorization();

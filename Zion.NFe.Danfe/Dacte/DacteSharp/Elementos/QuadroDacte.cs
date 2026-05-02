@@ -25,7 +25,7 @@ namespace DacteSharp
             float paddingHorizontal = ViewModel.Orientacao == Orientacao.Retrato ? 2.5F : 5F;
 
             var rp1 = BoundingBox.InflatedRetangle(1F, 0.5F, paddingHorizontal);
-            var rp2 = rp1;
+            var rp2 = rp1.MoveDown(Estilo.OffsetTituloDocumentoPrincipal);
 
             var f1 = Estilo.CriarFonteNegrito(10);
             var f1h = f1.AlturaLinha;
@@ -39,7 +39,8 @@ namespace DacteSharp
             var ts = new TextStack(rp2)
             {
                 AlinhamentoVertical = AlinhamentoVertical.Topo,
-                AlinhamentoHorizontal = AlinhamentoHorizontal.Centro
+                AlinhamentoHorizontal = AlinhamentoHorizontal.Centro,
+                VerticalOffset = Estilo.OffsetSubtituloDocumentoPrincipal
             }
             .AddLine("Documento Auxiliar do Conhecimento", f2)
             .AddLine("de Transporte Eletrônico", f2);

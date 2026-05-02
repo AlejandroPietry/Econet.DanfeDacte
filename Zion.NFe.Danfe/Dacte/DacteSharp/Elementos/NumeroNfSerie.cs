@@ -21,7 +21,7 @@ namespace DacteSharp
         {
             base.Draw(gfx);
 
-            var r = BoundingBox.InflatedRetangle(1);
+            var r = BoundingBox.InflatedRetangle(1).MoveDown(Estilo.OffsetSiglaDocumento);
 
             var f2 = Estilo.CriarFonteNegrito(11F);
             var f3 = Estilo.CriarFonteRegular(9.25F);
@@ -34,7 +34,8 @@ namespace DacteSharp
             {
                 AlinhamentoHorizontal = AlinhamentoHorizontal.Centro,
                 AlinhamentoVertical = AlinhamentoVertical.Centro,
-                LineHeightScale = 1F
+                LineHeightScale = 1F,
+                VerticalOffset = Estilo.OffsetSubtituloDocumentoPrincipal
             }
             .AddLine($"Nº DOCUMENTO  {ctNumero}", f3)
             .AddLine(" ", f3)

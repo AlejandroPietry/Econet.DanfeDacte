@@ -13,6 +13,8 @@ namespace Zion.NFe.Danfe.Elementos
     /// </summary>
     internal class TextBlock : DrawableBase
     {
+        public const float DefaultVerticalOffset = 0.35F;
+
         private string _Text;
         public string Text { get => _Text; set { _Text = value; _Height = null; } }
 
@@ -23,6 +25,7 @@ namespace Zion.NFe.Danfe.Elementos
 
         public List<string> Lines { get; private set; }
         private float? _Height;
+        public float VerticalOffset { get; set; }
 
         public override float Width { get => base.Width; set { base.Width = value; _Height = null; } }
         public AlinhamentoHorizontal AlinhamentoHorizontal { get; set; }
@@ -46,7 +49,7 @@ namespace Zion.NFe.Danfe.Elementos
             base.Draw(gfx);
             if (!_Height.HasValue) CalculateLines();
 
-            float y = Y;
+            float y = Y + VerticalOffset;
 
             foreach (var item in Lines)
             {
@@ -163,6 +166,7 @@ namespace Zion.NFe.Danfe.Elementos
             SplitText();
             AlinhamentoHorizontal = AlinhamentoHorizontal.Esquerda;
             Lines = new List<string>();
+            VerticalOffset = DefaultVerticalOffset;
         }
     }
 }

@@ -2,6 +2,7 @@
 using Zion.NFe.Danfe.Elementos;
 using Zion.NFe.Danfe.Enumeracoes;
 using Zion.NFe.Danfe.Graphics;
+using Zion.NFe.Danfe.Tools.Extensions;
 
 namespace DacteSharp
 {
@@ -21,7 +22,8 @@ namespace DacteSharp
         public override void Draw(Gfx gfx)
         {
             base.Draw(gfx);
-            gfx.DrawString(Cabecalho.ToUpper(), BoundingBox, Estilo.FonteBlocoCabecalho,
+            System.Drawing.RectangleF retanguloCabecalho = BoundingBox.MoveDown(Estilo.OffsetCabecalhoCampoCentralizado);
+            gfx.DrawString(Cabecalho.ToUpper(), retanguloCabecalho, Estilo.FonteBlocoCabecalho,
                 AlinhamentoHorizontal.Centro, AlinhamentoVertical.Base);
         }
     }

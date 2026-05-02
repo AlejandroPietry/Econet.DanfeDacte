@@ -79,6 +79,7 @@ namespace Zion.NFe.Danfe.Tools.Extensions
         }
 
         public static RectangleF InflatedRetangle(this RectangleF rect, float value) => rect.InflatedRetangle(value, value, value);
+        public static RectangleF MoveDown(this RectangleF rect, float offsetY) => new RectangleF(rect.X, rect.Y + offsetY, rect.Width, rect.Height);
 
         public static RectangleF ToPointMeasure(this RectangleF r) => new RectangleF(r.X.ToPoint(), r.Y.ToPoint(), r.Width.ToPoint(), r.Height.ToPoint());
 

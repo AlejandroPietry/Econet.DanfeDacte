@@ -31,7 +31,8 @@ namespace Zion.NFe.Danfe.Elementos
         {
             if (!string.IsNullOrWhiteSpace(Cabecalho))
             {
-                gfx.DrawString(Cabecalho.ToUpper(), RetanguloDesenhvael, Estilo.FonteCampoCabecalho, AlinhamentoHorizontal.Esquerda, AlinhamentoVertical.Topo);
+                var retanguloCabecalho = RetanguloDesenhvael.MoveDown(Estilo.OffsetCabecalhoCampo);
+                gfx.DrawString(Cabecalho.ToUpper(), retanguloCabecalho, Estilo.FonteCampoCabecalho, AlinhamentoHorizontal.Esquerda, AlinhamentoVertical.Topo);
             }
         }
 
@@ -75,7 +76,8 @@ namespace Zion.NFe.Danfe.Elementos
                     }
                 }
 
-                gfx.DrawString(texto, rDesenhavel, fonte, AlinhamentoHorizontalConteudo, AlinhamentoVertical.Base);
+                var retanguloConteudo = rDesenhavel.MoveDown(Estilo.OffsetConteudoCampo);
+                gfx.DrawString(texto, retanguloConteudo, fonte, AlinhamentoHorizontalConteudo, AlinhamentoVertical.Base);
 
             }
         }

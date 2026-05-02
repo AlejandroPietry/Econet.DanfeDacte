@@ -30,6 +30,7 @@ namespace Zion.NFe.Danfe.Elementos
 
                 var tb = new TextBlock(Texto, Estilo.CriarFonteRegular(TamanhoFonte));
                 tb.AlinhamentoHorizontal = AlinhamentoHorizontal;
+                tb.VerticalOffset = Estilo.OffsetTextoSimples;
                 tb.Width = r.Width;
 
                 var y = r.Y;

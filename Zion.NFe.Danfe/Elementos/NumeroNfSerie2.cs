@@ -39,7 +39,7 @@ namespace Zion.NFe.Danfe.Elementos
             float paddingHorizontal = ViewModel.Orientacao == Orientacao.Retrato ? 2.5F : 5F;
 
             var rp1 = BoundingBox.InflatedRetangle(1F, 0.5F, paddingHorizontal);
-            var rp2 = rp1;
+            var rp2 = rp1.MoveDown(Estilo.OffsetTituloDocumentoPrincipal);
 
             var f1 = Estilo.CriarFonteNegrito(12);
             var f1h = f1.AlturaLinha;
@@ -52,7 +52,8 @@ namespace Zion.NFe.Danfe.Elementos
 
             var ts = new TextStack(rp2)
             {
-                AlinhamentoVertical = AlinhamentoVertical.Topo
+                AlinhamentoVertical = AlinhamentoVertical.Topo,
+                VerticalOffset = Estilo.OffsetSubtituloDocumentoPrincipal
             }
             .AddLine("Documento Auxiliar da", f2)
             .AddLine("Nota Fiscal Eletrônica", f2);
@@ -65,7 +66,8 @@ namespace Zion.NFe.Danfe.Elementos
             ts = new TextStack(rp2)
             {
                 AlinhamentoVertical = AlinhamentoVertical.Topo,
-                AlinhamentoHorizontal = AlinhamentoHorizontal.Esquerda
+                AlinhamentoHorizontal = AlinhamentoHorizontal.Esquerda,
+                VerticalOffset = Estilo.OffsetSubtituloDocumentoPrincipal
             }
             .AddLine("0 - ENTRADA", f2)
             .AddLine("1 - SAÍDA", f2);
@@ -88,7 +90,8 @@ namespace Zion.NFe.Danfe.Elementos
             ts = new TextStack(rp2)
             {
                 AlinhamentoVertical = AlinhamentoVertical.Topo,
-                AlinhamentoHorizontal = AlinhamentoHorizontal.Centro
+                AlinhamentoHorizontal = AlinhamentoHorizontal.Centro,
+                VerticalOffset = Estilo.OffsetSubtituloDocumentoPrincipal
             }
             .AddLine("Nº.: " + ViewModel.NfNumero.ToString(Formatador.FormatoNumeroNF), f4)
             .AddLine($"Série: {ViewModel.NfSerie}", f4);

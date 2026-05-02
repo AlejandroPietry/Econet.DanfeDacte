@@ -12,12 +12,14 @@ namespace Zion.NFe.Danfe.Elementos
     internal class TextStack : DrawableBase
     {
         public const float DefaultLineHeightScale = 1.25F;
+        public const float DefaultVerticalOffset = 0.35F;
 
         private List<string> _Lines;
         private List<Fonte> _Fonts;
         public AlinhamentoHorizontal AlinhamentoHorizontal { get; set; }
         public AlinhamentoVertical AlinhamentoVertical { get; set; }
         public float LineHeightScale { get; set; }
+        public float VerticalOffset { get; set; }
 
         public TextStack(RectangleF boundingBox)
         {
@@ -28,6 +30,7 @@ namespace Zion.NFe.Danfe.Elementos
             AlinhamentoHorizontal = AlinhamentoHorizontal.Centro;
             AlinhamentoVertical = AlinhamentoVertical.Centro;
             LineHeightScale = DefaultLineHeightScale;
+            VerticalOffset = DefaultVerticalOffset;
         }
 
         public TextStack AddLine(string text, Fonte font)
@@ -71,6 +74,8 @@ namespace Zion.NFe.Danfe.Elementos
                 r.Y += (float)h2;
             else if (AlinhamentoVertical == AlinhamentoVertical.Base)
                 r.Y = r.Bottom - totalH;
+
+            r.Y += VerticalOffset;
 
             for (int i = 0; i < _Lines.Count; i++)
             {

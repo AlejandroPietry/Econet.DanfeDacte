@@ -19,7 +19,7 @@ namespace Zion.NFe.Danfe.Elementos
         {
             base.Draw(gfx);
 
-            var r = BoundingBox.InflatedRetangle(1);
+            var r = BoundingBox.InflatedRetangle(1).MoveDown(Estilo.OffsetSiglaDocumento);
 
             var f1 = Estilo.CriarFonteNegrito(14);
             var f2 = Estilo.CriarFonteNegrito(11F);
@@ -32,7 +32,8 @@ namespace Zion.NFe.Danfe.Elementos
             {
                 AlinhamentoHorizontal = AlinhamentoHorizontal.Centro,
                 AlinhamentoVertical = AlinhamentoVertical.Centro,
-                LineHeightScale = 1F
+                LineHeightScale = 1F,
+                VerticalOffset = Estilo.OffsetSubtituloDocumentoPrincipal
             }
             .AddLine($"Nº.: {NfNumero}", f2)
             .AddLine($"Série: {NfSerie}", f2);

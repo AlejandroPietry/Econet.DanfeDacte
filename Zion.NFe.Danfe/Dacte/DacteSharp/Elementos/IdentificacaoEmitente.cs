@@ -39,7 +39,7 @@ namespace DacteSharp
             if (Logo == null)
             {
                 var f1 = Estilo.CriarFonteRegular(6);
-                gfx.DrawString("IDENTIFICAÇÃO DO EMITENTE", rp, f1, AlinhamentoHorizontal.Centro);
+                gfx.DrawString("IDENTIFICAÇÃO DO EMITENTE", rp.MoveDown(Estilo.OffsetIdentificacaoEmitente), f1, AlinhamentoHorizontal.Centro);
                 rp = rp.CutTop(f1.AlturaLinha);
             }
             else
@@ -67,7 +67,7 @@ namespace DacteSharp
             var bairroMunUF = string.Concat(emitente.enderEmit.xBairro, " - ", " CEP: ", Formatador.FormatarCEP(emitente.enderEmit.CEP), " - ", Formatador.FormatarMunicipioUf(emitente.enderEmit.xMun, emitente.enderEmit.UF.ToString()));
             var foneCep = string.Concat("Fone/Fax: ", Formatador.FormatarTelefone(emitente.enderEmit.fone));
             var cnpjCpf = string.Concat("CNPJ / CPF: ", Formatador.FormatarCpfCnpj(emitente.CNPJ), " ", "Insc.Estadual: ", emitente.IE);
-            var ts = new TextStack(rp) { LineHeightScale = 1 }
+            var ts = new TextStack(rp) { LineHeightScale = 1, VerticalOffset = Estilo.OffsetIdentificacaoEmitente }
                 .AddLine(nome, f2)
                 .AddLine(" ", f2)
                 .AddLine(logradouroCompleto.Trim(), f3)

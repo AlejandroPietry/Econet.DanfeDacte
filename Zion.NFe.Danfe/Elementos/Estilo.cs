@@ -12,6 +12,15 @@ namespace Zion.NFe.Danfe.Elementos
         public float PaddingInferior { get; set; }
         public float PaddingHorizontal { get; set; }
         public float FonteTamanhoMinimo { get; set; }
+        public float OffsetCabecalhoCampo { get; set; }
+        public float OffsetConteudoCampo { get; set; }
+        public float OffsetTextoSimples { get; set; }
+        public float OffsetCabecalhoBloco { get; set; }
+        public float OffsetCabecalhoCampoCentralizado { get; set; }
+        public float OffsetSiglaDocumento { get; set; }
+        public float OffsetTituloDocumentoPrincipal { get; set; }
+        public float OffsetSubtituloDocumentoPrincipal { get; set; }
+        public float OffsetIdentificacaoEmitente { get; set; }
 
         public pcf.Font FonteInternaRegular { get; set; }
         public pcf.Font FonteInternaNegrito { get; set; }
@@ -28,6 +37,15 @@ namespace Zion.NFe.Danfe.Elementos
             PaddingHorizontal = 0.75F;
             PaddingSuperior = 0.65F;
             PaddingInferior = 0.3F;
+            OffsetCabecalhoCampo = 0.35F;
+            OffsetConteudoCampo = 0.55F;
+            OffsetTextoSimples = 0.35F;
+            OffsetCabecalhoBloco = 0.55F;
+            OffsetCabecalhoCampoCentralizado = 0.55F;
+            OffsetSiglaDocumento = 3.0F;
+            OffsetTituloDocumentoPrincipal = 0.55F;
+            OffsetSubtituloDocumentoPrincipal = 0.4F;
+            OffsetIdentificacaoEmitente = 0.35F;
 
             FonteInternaRegular = fontRegular;
             FonteInternaNegrito = fontBold;

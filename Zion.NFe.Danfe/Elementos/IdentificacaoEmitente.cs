@@ -36,7 +36,7 @@ namespace Zion.NFe.Danfe.Elementos
             if (Logo == null)
             {
                 var f1 = Estilo.CriarFonteRegular(6);
-                gfx.DrawString("IDENTIFICAÇÃO DO EMITENTE", rp, f1, AlinhamentoHorizontal.Centro);
+                gfx.DrawString("IDENTIFICAÇÃO DO EMITENTE", rp.MoveDown(Estilo.OffsetIdentificacaoEmitente), f1, AlinhamentoHorizontal.Centro);
                 rp = rp.CutTop(f1.AlturaLinha);
             }
             else
@@ -69,7 +69,7 @@ namespace Zion.NFe.Danfe.Elementos
             {
                 nome = !string.IsNullOrWhiteSpace(emitente.NomeFantasia) ? emitente.NomeFantasia : emitente.RazaoSocial;
             }
-            var ts = new TextStack(rp) { LineHeightScale = 1 }
+            var ts = new TextStack(rp) { LineHeightScale = 1, VerticalOffset = Estilo.OffsetIdentificacaoEmitente }
                 .AddLine(nome, f2)
                 .AddLine(emitente.EnderecoLinha1.Trim(), f3)
                 .AddLine(emitente.EnderecoLinha2.Trim(), f3)
