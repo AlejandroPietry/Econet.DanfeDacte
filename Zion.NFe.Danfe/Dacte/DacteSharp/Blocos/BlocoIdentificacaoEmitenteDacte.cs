@@ -65,9 +65,12 @@ namespace DacteSharp.Blocos
 
             CarregaTipoServico(textoConsulta, campoChaveAcesso);
 
+            var estiloCfopNaturezaPrestacao = estilo.Clonar();
+            estiloCfopNaturezaPrestacao.OffsetConteudoCampo = estilo.OffsetConteudoCampo > 1.2F ? estilo.OffsetConteudoCampo - 1.2F : 0F;
+
             AdicionarLinhaCamposTabelas(10, true)
-                .ComCampo("CFOP - NATUREZA DA PRESTAÇÃO ", string.Concat(ViewModel.CFOP, "-", viewModel.NaturezaOperacao), AlinhamentoHorizontal.Centro)
-                .ComCampo("PROTOCOLO DE AUTORIZAÇÃO DE USO", ViewModel.ProtocoloAutorizacao, AlinhamentoHorizontal.Centro)
+                .ComElemento(new Campo("CFOP - NATUREZA DA PRESTAÇÃO ", string.Concat(ViewModel.CFOP, "-", viewModel.NaturezaOperacao), estiloCfopNaturezaPrestacao, AlinhamentoHorizontal.Centro))
+                .ComElemento(new Campo("PROTOCOLO DE AUTORIZAÇÃO DE USO", ViewModel.ProtocoloAutorizacao, estilo, AlinhamentoHorizontal.Centro))
                 .ComLarguras(40F, 60F);
         }
 

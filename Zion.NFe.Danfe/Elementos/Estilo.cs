@@ -89,5 +89,38 @@ namespace Zion.NFe.Danfe.Elementos
         public Fonte CriarFonteNegrito(float emSize) => new Fonte(FonteInternaNegrito, emSize);
         public Fonte CriarFonteItalico(float emSize) => new Fonte(FonteInternaItalico, emSize);
 
+        public Estilo Clonar()
+        {
+            return new Estilo(FonteInternaRegular, FonteInternaNegrito, FonteInternaItalico, FonteCampoCabecalho.Tamanho, FonteCampoConteudo.Tamanho)
+            {
+                PaddingSuperior = PaddingSuperior,
+                PaddingInferior = PaddingInferior,
+                PaddingHorizontal = PaddingHorizontal,
+                FonteTamanhoMinimo = FonteTamanhoMinimo,
+                OffsetCabecalhoCampo = OffsetCabecalhoCampo,
+                OffsetConteudoCampo = OffsetConteudoCampo,
+                OffsetConteudoCampoMultilinha = OffsetConteudoCampoMultilinha,
+                OffsetTextoSimples = OffsetTextoSimples,
+                OffsetCabecalhoBloco = OffsetCabecalhoBloco,
+                OffsetCabecalhoBlocoDanfe = OffsetCabecalhoBlocoDanfe,
+                OffsetCabecalhoCampoCentralizado = OffsetCabecalhoCampoCentralizado,
+                OffsetSiglaDocumento = OffsetSiglaDocumento,
+                OffsetTituloDocumentoPrincipal = OffsetTituloDocumentoPrincipal,
+                OffsetSubtituloDocumentoPrincipal = OffsetSubtituloDocumentoPrincipal,
+                OffsetIdentificacaoEmitente = OffsetIdentificacaoEmitente,
+                OffsetCreditosDanfe = OffsetCreditosDanfe,
+                OffsetCreditosDacte = OffsetCreditosDacte,
+                OffsetNumeroFolhasDanfe = OffsetNumeroFolhasDanfe,
+                OffsetTituloDanfePrincipal = OffsetTituloDanfePrincipal,
+                OffsetTipoNfDanfe = OffsetTipoNfDanfe,
+                OffsetNumeroSerieDanfe = OffsetNumeroSerieDanfe,
+                OffsetTituloInicioTerminoPrestacaoDacte = OffsetTituloInicioTerminoPrestacaoDacte,
+                OffsetInicioPrestacaoDacte = OffsetInicioPrestacaoDacte,
+                OffsetCabecalhoInformacoesCargaDacte = OffsetCabecalhoInformacoesCargaDacte,
+                OffsetCabecalhoBlocoDacte = OffsetCabecalhoBlocoDacte,
+                OffsetCabecalhoUsoEmissorFiscoDacte = OffsetCabecalhoUsoEmissorFiscoDacte
+            };
+        }
+
     }
 }
