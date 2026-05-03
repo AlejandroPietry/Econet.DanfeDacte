@@ -1,4 +1,4 @@
-### Econet DacteDanfe é uma biblioteca em C# que permite a geração do DANFE e do DACTE em formato PDF. Feito em netstandard2.0 e multiplataforma.
+### Econet DacteDanfe é uma biblioteca em C# que permite a geração do DANFE e do DACTE em formato PDF. Feito em `netstandard2.0` e multiplataforma.
 
 ### Exemplo para gerar DACTE
 ```csharp
@@ -23,7 +23,70 @@ File.WriteAllBytes("Danfe.pdf", pdfBytes);
 
 Se precisar customizar o documento manualmente, a API atual com `DanfeDoc`, `Dacte`, `DanfeViewModelCreator` e `DacteViewModelCreator` continua disponível.
 
+### Exemplo avançado de DANFE a partir do XML
+```csharp
+string xmlNfe = File.ReadAllText("nota.xml");
+
+var modelo = DanfeViewModelCreator.CriarDeStringXml(xmlNfe);
+
+using (var danfe = new DanfeDoc(modelo))
+{
+    danfe.Gerar();
+    danfe.Salvar("Danfe.pdf");
+}
+```
+
+### Exemplo avançado de DANFE retornando bytes
+```csharp
+string xmlNfe = File.ReadAllText("nota.xml");
+var modelo = DanfeViewModelCreator.CriarDeStringXml(xmlNfe);
+
+byte[] pdfBytes;
+using (var memoryStream = new MemoryStream())
+using (var danfe = new DanfeDoc(modelo))
+{
+    danfe.Gerar();
+    pdfBytes = danfe.ObterPdfBytes(memoryStream);
+}
+```
+
+### Exemplo avançado de DANFE com logotipo
+```csharp
+string xmlNfe = File.ReadAllText("nota.xml");
+var modelo = DanfeViewModelCreator.CriarDeStringXml(xmlNfe);
+
+using (var danfe = new DanfeDoc(modelo))
+{
+    danfe.AdicionarLogoImagem("logo.jpg");
+    danfe.Gerar();
+    danfe.Salvar("Danfe-com-logo.pdf");
+}
+```
+
+### Exemplo avançado de DACTE
+```csharp
+string xmlCte = File.ReadAllText("cte.xml");
+var modelo = DacteViewModelCreator.Criar57DeStringXml(xmlCte);
+
+using (var dacte = new Dacte(modelo))
+{
+    dacte.Gerar();
+    dacte.Salvar("Dacte.pdf");
+}
+```
+
+### Exemplo avançado de DACTE OS
+```csharp
+string xmlCteOs = File.ReadAllText("cteos.xml");
+var modelo = DacteViewModelCreator.Criar67DeStringXml(xmlCteOs);
+
+using (var dacte = new Dacte(modelo))
+{
+    dacte.Gerar();
+    dacte.Salvar("Dacte-OS.pdf");
+}
+```
+
 ### Créditos
 
-Biblioteca construída com base no [Zion.Danfe](https://github.com/Laranjeiras/Zion.NFe.Danfe).
 Créditos também ao [FiscalSync](https://fiscalsync.com.br/).
