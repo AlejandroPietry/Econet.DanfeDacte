@@ -10,8 +10,8 @@ namespace DacteSharp.Blocos
         public BlocoUsoEmissorFisco(DacteViewModel viewModel, Estilo campoEstilo) : base(viewModel, campoEstilo)
         {
             Fonte f2 = Estilo.CriarFonteRegular(5);
-            var cabecalhoUso = new CabecalhoCampo(campoEstilo, "USO EXCLUSIVO DO EMISSOR DO CT-E");
-            var cabecalhoReservado = new CabecalhoCampo(campoEstilo, "RESERVADO AO FISCO");
+            var cabecalhoUso = new CabecalhoCampo(campoEstilo, "USO EXCLUSIVO DO EMISSOR DO CT-E") { OffsetVertical = campoEstilo.OffsetCabecalhoUsoEmissorFiscoDacte };
+            var cabecalhoReservado = new CabecalhoCampo(campoEstilo, "RESERVADO AO FISCO") { OffsetVertical = campoEstilo.OffsetCabecalhoUsoEmissorFiscoDacte };
 
             var modeloModal = viewModel.DadosModalObservacao;
             AdicionarLinhaCamposTabelas(3, true)

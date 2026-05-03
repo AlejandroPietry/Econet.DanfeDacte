@@ -13,16 +13,18 @@ namespace DacteSharp
     {
         public const float MargemSuperior = 0.8F;
         public String Cabecalho { get; set; }
+        public float OffsetVertical { get; set; }
 
         public CabecalhoBloco(Estilo estilo, String cabecalho) : base(estilo)
         {
             Cabecalho = cabecalho ?? throw new ArgumentNullException(cabecalho);
+            OffsetVertical = Estilo.OffsetCabecalhoBlocoDacte;
         }
 
         public override void Draw(Gfx gfx)
         {
             base.Draw(gfx);
-            System.Drawing.RectangleF retanguloCabecalho = BoundingBox.MoveDown(Estilo.OffsetCabecalhoBloco);
+            System.Drawing.RectangleF retanguloCabecalho = BoundingBox.MoveDown(OffsetVertical);
             gfx.DrawString(Cabecalho.ToUpper(), retanguloCabecalho, Estilo.FonteBlocoCabecalho,
                 AlinhamentoHorizontal.Centro, AlinhamentoVertical.Base);
         }

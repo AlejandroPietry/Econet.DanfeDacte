@@ -32,6 +32,8 @@ namespace Zion.NFe.Danfe.Elementos
         public float OffsetTituloInicioTerminoPrestacaoDacte { get; set; }
         public float OffsetInicioPrestacaoDacte { get; set; }
         public float OffsetCabecalhoInformacoesCargaDacte { get; set; }
+        public float OffsetCabecalhoBlocoDacte { get; set; }
+        public float OffsetCabecalhoUsoEmissorFiscoDacte { get; set; }
 
         public pcf.Font FonteInternaRegular { get; set; }
         public pcf.Font FonteInternaNegrito { get; set; }
@@ -68,6 +70,8 @@ namespace Zion.NFe.Danfe.Elementos
             OffsetTituloInicioTerminoPrestacaoDacte = 3.0F;
             OffsetInicioPrestacaoDacte = 3.0F;
             OffsetCabecalhoInformacoesCargaDacte = 2.6F;
+            OffsetCabecalhoBlocoDacte = 1.6F;
+            OffsetCabecalhoUsoEmissorFiscoDacte = 2.4F;
 
             FonteInternaRegular = fontRegular;
             FonteInternaNegrito = fontBold;
