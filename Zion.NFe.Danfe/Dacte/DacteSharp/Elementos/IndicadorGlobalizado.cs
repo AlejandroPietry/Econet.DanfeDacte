@@ -20,14 +20,17 @@ namespace DacteSharp
         public override void Draw(Gfx gfx)
         {
             base.Draw(gfx);
+            const float offsetTitulo = 0.8F;
+            const float offsetOpcoes = 0.8F;
 
             var r = BoundingBox.InflatedRetangle(1);
             var f1 = Estilo.CriarFonteNegrito(14);
             var f2 = Estilo.CriarFonteNegrito(8F);
             var f3 = Estilo.CriarFonteRegular(6);
 
-            gfx.DrawString("INDICADOR DO CT-E GLOBALIZADO", r, f3, AlinhamentoHorizontal.Centro);
+            gfx.DrawString("INDICADOR DO CT-E GLOBALIZADO", r.MoveDown(offsetTitulo), f3, AlinhamentoHorizontal.Centro);
             r = r.CutTop(f1.AlturaLinha);
+            r = r.MoveDown(offsetOpcoes);
 
             var retanguloSim = new RectangleF(r.X, r.Y - 2, 6, f1.AlturaLinha - 1);
             gfx.DrawRectangle(retanguloSim);
