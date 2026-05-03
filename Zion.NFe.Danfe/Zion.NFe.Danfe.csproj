@@ -3,20 +3,20 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Alejandro Pietry</Authors>
-    <Company>Econet Editora Empresarial</Company>
+    <Company>FiscalSync</Company>
     <Description>Econet DacteDanfe é uma biblioteca em C# que permite a geração do DANFE e do DACTE em formato PDF. Com muitas possibilidades!
 Feito em netstandard2.0 é multiplataforma.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Copyright>Copyright ©  2022</Copyright>
+    <Copyright>Copyright ©  2026</Copyright>
     <NeutralLanguage>pt-BR</NeutralLanguage>
     <PackageProjectUrl>https://www.nuget.org/packages/Econet.DanfeDacte</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AlejandroPietry/Econet.DanfeDacte</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageTags>Danfe Nfe Dacte Dfe Cte </PackageTags>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>2.1.0.1</AssemblyVersion>
-    <FileVersion>2.1.0.1</FileVersion>
-    <Version>2.1.0.1</Version>
+    <PackageTags>Danfe Nfe Dacte Dfe Cte nfse</PackageTags>
+    <PackageReleaseNotes>Classe pública para facilitar a geracao de PDF e melhorias para funcionar no linux.</PackageReleaseNotes>
+    <AssemblyVersion>2.2.0.0</AssemblyVersion>
+    <FileVersion>2.2.0.0</FileVersion>
+    <Version>2.2.0.0</Version>
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
