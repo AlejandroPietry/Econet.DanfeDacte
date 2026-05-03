@@ -27,6 +27,13 @@ namespace Zion.NFe.Danfe.Elementos
             return this;
         }
 
+        public virtual LinhaCampos ComCampoMultilinha(string cabecalho, string conteudo, AlinhamentoHorizontal alinhamentoHorizontalConteudo = AlinhamentoHorizontal.Esquerda)
+        {
+            var campo = new CampoMultilinha(cabecalho, conteudo, Estilo, alinhamentoHorizontalConteudo);
+            Elementos.Add(campo);
+            return this;
+        }
+
         public virtual LinhaCampos ComCampoNumerico(string cabecalho, double? conteudoNumerico, int casasDecimais = 2)
         {
             var campo = new CampoNumerico(cabecalho, conteudoNumerico, Estilo, casasDecimais);

@@ -3,6 +3,8 @@ using ECONET.EcoNFe2.Negocio.Dacte.DacteSharp.Modelo;
 using System;
 using System.IO;
 using Zion.NFe.Danfe.Modelo;
+using Zion.NFe.Danfe.Nfse.Modelo;
+using NfseDoc = Zion.NFe.Danfe.Nfse.NfseDoc;
 
 namespace Zion.NFe.Danfe
 {
@@ -45,6 +47,22 @@ namespace Zion.NFe.Danfe
             }
         }
 
+        public static byte[] GerarNfsePdfDeXml(string xml)
+        {
+            if (xml == null) throw new ArgumentNullException(nameof(xml));
+
+            var modelo = NfseViewModelCreator.CriarDeStringXml(xml);
+            return GerarNfsePdf(modelo);
+        }
+
+        public static byte[] GerarNfsePdfDeXml(Stream xmlStream)
+        {
+            if (xmlStream == null) throw new ArgumentNullException(nameof(xmlStream));
+
+            var modelo = NfseViewModelCreator.CriarDeArquivoXml(xmlStream);
+            return GerarNfsePdf(modelo);
+        }
+
         private static byte[] GerarDanfePdf(DanfeViewModel modelo)
         {
             using (var pdfStream = new MemoryStream())
@@ -62,6 +80,16 @@ namespace Zion.NFe.Danfe
             {
                 dacte.Gerar();
                 return dacte.ObterPdfBytes(pdfStream);
+            }
+        }
+
+        private static byte[] GerarNfsePdf(NfseViewModel modelo)
+        {
+            using (var pdfStream = new MemoryStream())
+            using (var nfse = new NfseDoc(modelo))
+            {
+                nfse.Gerar();
+                return nfse.ObterPdfBytes(pdfStream);
             }
         }
 
