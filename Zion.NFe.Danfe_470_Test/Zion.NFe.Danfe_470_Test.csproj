@@ -99,6 +99,9 @@
     <Content Include="Xml\NFe\v4.00\v4_ComLocalRetirada.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Xml\NFSe\exemplo-2026-01-08.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zion.NFe.Danfe\Zion.NFe.Danfe.csproj">

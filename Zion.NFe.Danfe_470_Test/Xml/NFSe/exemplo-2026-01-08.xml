@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NFSe versao="1.01" xmlns="http://www.sped.fazenda.gov.br/nfse">
+  <infNFSe Id="NFS35503081253698568000194000000000003426012695385841">
+    <xLocEmi>São Paulo</xLocEmi>
+    <xLocPrestacao>São Paulo</xLocPrestacao>
+    <nNFSe>34</nNFSe>
+    <cLocIncid>3550308</cLocIncid>
+    <xTribNac>Análise, exame, pesquisa, coleta, compilação e fornecimento de dados e informações de qualquer natur</xTribNac>
+    <verAplic>1.0.4+E75B3A</verAplic>
+    <ambGer>1</ambGer>
+    <tpEmis>2</tpEmis>
+    <cStat>100</cStat>
+    <dhProc>2026-01-08T11:18:55-03:00</dhProc>
+    <nDFSe>34</nDFSe>
+    <emit>
+      <CNPJ>53698568000194</CNPJ>
+      <IM>79679358</IM>
+      <xNome>TORV.TECH LTDA</xNome>
+      <enderNac>
+        <xLgr>PAULISTA</xLgr>
+        <nro>777</nro>
+        <xCpl>ANDAR 15</xCpl>
+        <xBairro>BELA VISTA</xBairro>
+        <cMun>3550308</cMun>
+        <UF>SP</UF>
+        <CEP>01311914</CEP>
+      </enderNac>
+      <email>pietrytrindade12@gmail.com</email>
+    </emit>
+    <valores>
+      <vCalcDR>0.00</vCalcDR>
+      <vBC>11634.00</vBC>
+      <vISSQN>0.00</vISSQN>
+      <vTotalRet>0.00</vTotalRet>
+      <vLiq>11634.00</vLiq>
+    </valores>
+    <DPS versao="1.01" xmlns="http://www.sped.fazenda.gov.br/nfse">
+      <infDPS Id="DPS355030825369856800019400001000000000000034">
+        <tpAmb>1</tpAmb>
+        <dhEmi>2026-01-08T11:18:55-03:00</dhEmi>
+        <verAplic>1.0.4+E75B3A</verAplic>
+        <serie>1</serie>
+        <nDPS>34</nDPS>
+        <dCompet>2026-01-08</dCompet>
+        <tpEmit>1</tpEmit>
+        <cLocEmi>3550308</cLocEmi>
+        <prest>
+          <CNPJ>53698568000194</CNPJ>
+          <IM>79679358</IM>
+          <email>pietrytrindade12@gmail.com</email>
+          <regTrib>
+            <opSimpNac>3</opSimpNac>
+            <regApTribSN>1</regApTribSN>
+            <regEspTrib>0</regEspTrib>
+          </regTrib>
+        </prest>
+        <toma>
+          <CNPJ>37009428000105</CNPJ>
+          <xNome>K8 SOLUCOES EM PAGAMENTOS LTDA</xNome>
+          <end>
+            <endNac>
+              <cMun>4106902</cMun>
+              <CEP>81020670</CEP>
+            </endNac>
+            <xLgr>Emanuel Kant</xLgr>
+            <nro>60</nro>
+            <xCpl>SALA 801 A 804</xCpl>
+            <xBairro>Capão Raso</xBairro>
+          </end>
+          <email>financeiro@k8bank.com.br</email>
+        </toma>
+        <serv>
+          <locPrest>
+            <cLocPrestacao>3550308</cLocPrestacao>
+          </locPrest>
+          <cServ>
+            <cTribNac>170102</cTribNac>
+            <cTribMun>001</cTribMun>
+            <xDescServ>R$ 9.972,00 nove mil, novecentos e setenta e dois, a titulo de DAR.  
+
+ R$ 1.662,00 um mil, seiscentos e sessenta e dois, proporcional aos dias  
+
+ de efetiva prestacao dos servicos ate a data da assinatura do termo de encerramento.  
+
+ 6399200- Outras atividades de prestacao de servicos de informacao nao especificada anteriormente.</xDescServ>
+            <cNBS>999999999</cNBS>
+            <cIntContrib>0000000000331</cIntContrib>
+          </cServ>
+        </serv>
+        <valores>
+          <vServPrest>
+            <vServ>11634.00</vServ>
+          </vServPrest>
+          <trib>
+            <tribMun>
+              <tribISSQN>1</tribISSQN>
+              <tpRetISSQN>1</tpRetISSQN>
+            </tribMun>
+            <totTrib>
+              <vTotTrib>
+                <vTotTribFed>0.00</vTotTribFed>
+                <vTotTribEst>0.00</vTotTribEst>
+                <vTotTribMun>0.00</vTotTribMun>
+              </vTotTrib>
+              <indTotTrib>0</indTotTrib>
+            </totTrib>
+          </trib>
+        </valores>
+      </infDPS>
+    </DPS>
+  </infNFSe>
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <SignedInfo>
+      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+      <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+      <Reference URI="#NFS35503081253698568000194000000000003426012695385841">
+        <Transforms>
+          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+          <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+        </Transforms>
+        <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <DigestValue>5c7/LnMidlzVeXwk15kf2iVFRcw=</DigestValue>
+      </Reference>
+    </SignedInfo>
+    <SignatureValue>JpPFFgLX0BJJTSOOsaah9NYudlDOHDRIBQHZ+2DIqKYgLgYVqpXOqFiykadAi6UDKtDMejGQPcT61Z3KFj/3Uqaz+qu3+Z+TyrnwWvvXUFKfPbwPt5YaIXpmkR4mtth7xmFl28L9jV8hSpq5X72kqyj+mUAo4dsYXOil3WlvLkwbhImymFIgCxBFgP+xurSTq4r0I4lQKX6GBAx6s1CX9VyKahIfc8azdUMdHOweIkE76NCsgOlQs+mhHRWCPqTcjCO4COoUi/CfPH+A1W3CGlXPtIoymEufcHeUcx/qjhCRR8Gn8mjDXKiAYv4YexTdeBCpaJbMqAMCTCK061hEkg==</SignatureValue>
+    <KeyInfo>
+      <X509Data>
+        <X509Certificate>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</X509Certificate>
+      </X509Data>
+    </KeyInfo>
+  </Signature>
+</NFSe>

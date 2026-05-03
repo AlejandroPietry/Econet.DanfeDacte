@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using Zion.NFe.Danfe;
 using Zion.NFe.Danfe.Modelo;
+using Zion.NFe.Danfe.Nfse.Modelo;
 
 namespace ZionDanfe.WebService.Controllers
 {
@@ -27,6 +28,23 @@ namespace ZionDanfe.WebService.Controllers
                 string xml = System.IO.File.ReadAllText(@"C:\Users\pietr\Downloads\35220720147617002276570010063360481993663950.xml");
                 var modelo = DacteViewModelCreator.Criar57DeStringXml(xml);
                 var pdfBytes = GeradorPdf.GerarDactePdfDeXml(xml, ModeloDacte.Cte57);
+
+                return File(pdfBytes, "Application/pdf", $"{modelo.ChaveAcesso}.pdf");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("/api/xml/pdf/gerar-nfse")]
+        public IActionResult GerarPdfNFSe()
+        {
+            try
+            {
+                string xml = System.IO.File.ReadAllText(@"C:\Users\pietr\Downloads\35503081253698568000194000000000003926040558966528.xml");
+                var modelo = NfseViewModelCreator.CriarDeStringXml(xml);
+                var pdfBytes = GeradorPdf.GerarNfsePdfDeXml(xml);
 
                 return File(pdfBytes, "Application/pdf", $"{modelo.ChaveAcesso}.pdf");
             }
