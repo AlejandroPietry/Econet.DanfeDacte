@@ -12,11 +12,11 @@ namespace DacteSharp.Blocos
             var informacoesCarga = viewModel.InformacaoCteNorm;
             //if (informacoesCarga == null)
             //informacoesCarga = new DacteViewModel.InformacoesProdutoCarga();
-            var pb = new CabecalhoCampo(campoEstilo, $"PESO BRUTO {informacoesCarga.TipoMedidaPesoBruto}");
-            var pc = new CabecalhoCampo(campoEstilo, $"PESO BASE CÁLCULO {informacoesCarga.TipoMedidaPesoBaseCalculo}");
-            var pa = new CabecalhoCampo(campoEstilo, $"PESO AFERIDO {informacoesCarga.TipoMedidaPesoAferido}");
-            var cb = new CabecalhoCampo(campoEstilo, "CUBAGEM(M3)");
-            var qt = new CabecalhoCampo(campoEstilo, $"QTDE{informacoesCarga.TipoMedidaQuantidade}");
+            var pb = new CabecalhoCampo(campoEstilo, $"PESO BRUTO {informacoesCarga.TipoMedidaPesoBruto}") { OffsetVertical = campoEstilo.OffsetCabecalhoInformacoesCargaDacte };
+            var pc = new CabecalhoCampo(campoEstilo, $"PESO BASE CÁLCULO {informacoesCarga.TipoMedidaPesoBaseCalculo}") { OffsetVertical = campoEstilo.OffsetCabecalhoInformacoesCargaDacte };
+            var pa = new CabecalhoCampo(campoEstilo, $"PESO AFERIDO {informacoesCarga.TipoMedidaPesoAferido}") { OffsetVertical = campoEstilo.OffsetCabecalhoInformacoesCargaDacte };
+            var cb = new CabecalhoCampo(campoEstilo, "CUBAGEM(M3)") { OffsetVertical = campoEstilo.OffsetCabecalhoInformacoesCargaDacte };
+            var qt = new CabecalhoCampo(campoEstilo, $"QTDE{informacoesCarga.TipoMedidaQuantidade}") { OffsetVertical = campoEstilo.OffsetCabecalhoInformacoesCargaDacte };
 
             var modeloModal = viewModel.DadosModalRodoviario;
 

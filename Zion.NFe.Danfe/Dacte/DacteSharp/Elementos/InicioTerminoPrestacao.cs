@@ -19,14 +19,15 @@ namespace DacteSharp
             var r = BoundingBox.InflatedRetangle(1);
             var f3 = Estilo.CriarFonteRegular(8);
 
-            gfx.DrawString("TÉRMINO DA PRESTAÇÃO - DATA/HORA", r, f3, AlinhamentoHorizontal.Centro);
+            gfx.DrawString("TÉRMINO DA PRESTAÇÃO - DATA/HORA", r.MoveDown(Estilo.OffsetTituloInicioTerminoPrestacaoDacte), f3, AlinhamentoHorizontal.Centro);
             r = r.CutTop(f3.AlturaLinha);
 
             TextStack ts = new TextStack(r)
             {
                 AlinhamentoHorizontal = AlinhamentoHorizontal.Centro,
                 AlinhamentoVertical = AlinhamentoVertical.Centro,
-                LineHeightScale = 1F
+                LineHeightScale = 1F,
+                VerticalOffset = Estilo.OffsetInicioPrestacaoDacte
             }
             .AddLine(" ", f3)
             .AddLine("INÍCIO DA PRESTAÇÃO - DATA/HORA ", f3)

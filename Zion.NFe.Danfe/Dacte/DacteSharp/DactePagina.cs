@@ -45,7 +45,8 @@ namespace DacteSharp
 
         public void DesenharCreditos()
         {
-            Gfx.DrawString($"{Strings.TextoCreditos}", RetanguloCreditos, Dacte.EstiloPadrao.CriarFonteItalico(6), AlinhamentoHorizontal.Esquerda);
+            var retanguloCreditos = RetanguloCreditos.MoveDown(Dacte.EstiloPadrao.OffsetCreditosDacte);
+            Gfx.DrawString($"{Strings.TextoCreditos}", retanguloCreditos, Dacte.EstiloPadrao.CriarFonteItalico(6), AlinhamentoHorizontal.Esquerda);
         }
 
         private void DesenharCanhoto()
