@@ -21,6 +21,8 @@ namespace DacteSharp
         public override void Draw(Gfx gfx)
         {
             base.Draw(gfx);
+            const float offsetTituloDacte = 0.8F;
+            const float lineHeightSubtitulo = 0.85F;
 
             float paddingHorizontal = ViewModel.Orientacao == Orientacao.Retrato ? 2.5F : 5F;
 
@@ -29,7 +31,7 @@ namespace DacteSharp
 
             var f1 = Estilo.CriarFonteNegrito(10);
             var f1h = f1.AlturaLinha;
-            gfx.DrawString("DACTE", rp2, f1, AlinhamentoHorizontal.Centro);
+            gfx.DrawString("DACTE", rp2.MoveDown(offsetTituloDacte), f1, AlinhamentoHorizontal.Centro);
 
             rp2 = rp2.CutTop(f1h + 0.5F);
 
@@ -40,7 +42,8 @@ namespace DacteSharp
             {
                 AlinhamentoVertical = AlinhamentoVertical.Topo,
                 AlinhamentoHorizontal = AlinhamentoHorizontal.Centro,
-                VerticalOffset = Estilo.OffsetSubtituloDocumentoPrincipal
+                VerticalOffset = Estilo.OffsetSubtituloDocumentoPrincipal,
+                LineHeightScale = lineHeightSubtitulo
             }
             .AddLine("Documento Auxiliar do Conhecimento", f2)
             .AddLine("de Transporte Eletrônico", f2);
