@@ -44,18 +44,47 @@ namespace Zion.NFe.Danfe.Nfse
 
         public void DesenharCabecalho()
         {
-            var titleFont = Nfse.EstiloPadrao.CriarFonteNegrito(18);
-            var smallFont = Nfse.EstiloPadrao.CriarFonteRegular(7);
+            var titleFont = Nfse.EstiloPadrao.CriarFonteNegrito(12);
+            var subtitleFont = Nfse.EstiloPadrao.CriarFonteRegular(8);
+            var smallFont = Nfse.EstiloPadrao.CriarFonteRegular(6);
+            var keyFont = Nfse.EstiloPadrao.CriarFonteNegrito(8);
+            var keyValueFont = Nfse.EstiloPadrao.CriarFonteNegrito(10);
 
             if (Nfse.LogoObject != null)
             {
-                var logoRect = new RectangleF(RetanguloCabecalho.X, RetanguloCabecalho.Y, 30, RetanguloCabecalho.Height - 2);
+                var logoRect = new RectangleF(RetanguloCabecalho.X, RetanguloCabecalho.Y + 1, 18, RetanguloCabecalho.Height - 2);
                 Gfx.ShowXObject(Nfse.LogoObject, logoRect);
             }
 
-            var titleRect = new RectangleF(RetanguloCabecalho.X + 32, RetanguloCabecalho.Y, RetanguloCabecalho.Width * 0.3f, RetanguloCabecalho.Height);
-            Gfx.DrawString("NFS-e", titleRect, titleFont, AlinhamentoHorizontal.Esquerda, AlinhamentoVertical.Centro);
-            Gfx.DrawString(Nfse.ViewModel.IsHomologacao ? "AMBIENTE DE HOMOLOGAÇÃO" : "AMBIENTE DE PRODUÇÃO", new RectangleF(RetanguloCabecalho.X, RetanguloCabecalho.Y, RetanguloCabecalho.Width, RetanguloCabecalho.Height), smallFont, AlinhamentoHorizontal.Direita, AlinhamentoVertical.Centro);
+            var leftRect = new RectangleF(RetanguloCabecalho.X + 20, RetanguloCabecalho.Y, RetanguloCabecalho.Width * 0.52f, RetanguloCabecalho.Height);
+            var leftStack = new TextStack(leftRect)
+            {
+                AlinhamentoHorizontal = AlinhamentoHorizontal.Esquerda,
+                AlinhamentoVertical = AlinhamentoVertical.Topo,
+                LineHeightScale = 0.9F
+            }
+            .AddLine("DANFSe v1.0", titleFont)
+            .AddLine("Documento Auxiliar da NFS-e", subtitleFont)
+            .AddLine("Prefeitura da Cidade de São Paulo", smallFont)
+            .AddLine("Secretaria Municipal da Fazenda", smallFont)
+            .AddLine("Telefone (11)156", smallFont);
+            leftStack.Draw(Gfx);
+
+            var rightRect = new RectangleF(RetanguloCabecalho.X + (RetanguloCabecalho.Width * 0.56f), RetanguloCabecalho.Y, RetanguloCabecalho.Width * 0.42f, RetanguloCabecalho.Height);
+            var rightStack = new TextStack(rightRect)
+            {
+                AlinhamentoHorizontal = AlinhamentoHorizontal.Direita,
+                AlinhamentoVertical = AlinhamentoVertical.Topo,
+                LineHeightScale = 0.95F
+            }
+            .AddLine("Chave de Acesso da NFS-e", keyFont)
+            .AddLine(Nfse.ViewModel.ChaveAcesso ?? string.Empty, keyValueFont)
+            .AddLine("Texto de autenticação", smallFont)
+            .AddLine(Nfse.ViewModel.CodigoVerificacao ?? string.Empty, smallFont);
+            rightStack.Draw(Gfx);
+
+            var ambienteFont = Nfse.EstiloPadrao.CriarFonteRegular(6);
+            Gfx.DrawString(Nfse.ViewModel.IsHomologacao ? "AMBIENTE DE HOMOLOGAÇÃO" : "AMBIENTE DE PRODUÇÃO", new RectangleF(RetanguloCabecalho.X, RetanguloCabecalho.Bottom - 5, RetanguloCabecalho.Width, 5), ambienteFont, AlinhamentoHorizontal.Direita, AlinhamentoVertical.Topo);
         }
 
         public void DesenharRodape(int numeroPagina, int totalPaginas)
@@ -66,7 +95,7 @@ namespace Zion.NFe.Danfe.Nfse
 
         public void DesenharMarcaDagua()
         {
-            if (!Nfse.ViewModel.IsHomologacao) return;
+            if (!Nfse.ViewModel.ExibirMarcaDaguaModelo && !Nfse.ViewModel.IsHomologacao) return;
 
             var ts = new Elementos.TextStack(RetanguloCorpo)
             {
@@ -74,8 +103,8 @@ namespace Zion.NFe.Danfe.Nfse
                 AlinhamentoVertical = AlinhamentoVertical.Centro,
                 LineHeightScale = 0.9F
             }
-            .AddLine("SEM VALOR FISCAL", Nfse.EstiloPadrao.CriarFonteRegular(36))
-            .AddLine("AMBIENTE DE HOMOLOGAÇÃO", Nfse.EstiloPadrao.CriarFonteRegular(20));
+            .AddLine("MODELO", Nfse.EstiloPadrao.CriarFonteRegular(42))
+            .AddLine("SEM VALOR FISCAL", Nfse.EstiloPadrao.CriarFonteRegular(20));
 
             Gfx.PrimitiveComposer.BeginLocalState();
             Gfx.PrimitiveComposer.SetFillColor(new org.pdfclown.documents.contents.colorSpaces.DeviceRGBColor(0.35, 0.35, 0.35));

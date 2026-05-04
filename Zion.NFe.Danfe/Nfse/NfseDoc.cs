@@ -103,60 +103,159 @@ namespace Zion.NFe.Danfe.Nfse
             };
 
             stack.Add(CriarLinhaIdentificacao());
+            stack.Add(CriarIdentificacaoDps());
             stack.Add(CriarLinhaPrestador());
             stack.Add(CriarLinhaTomador());
-            stack.Add(CriarDiscriminacao());
-            stack.Add(CriarLinhaValores());
+            stack.Add(CriarServicoPrestado());
+            stack.Add(CriarTributacaoMunicipal());
+            stack.Add(CriarTributacaoFederal());
+            stack.Add(CriarTotais());
+            stack.Add(CriarTotaisTributos());
             stack.Add(CriarObservacoes());
 
             stack.Draw(pagina.Gfx);
         }
 
+        private CampoMultilinha CriarIdentificacaoDps()
+        {
+            var texto = new StringBuilder();
+            if (!string.IsNullOrWhiteSpace(ViewModel.ChaveAcesso))
+                texto.Append("Chave de Acesso da NFS-e: ").AppendLine(ViewModel.ChaveAcesso);
+            if (!string.IsNullOrWhiteSpace(ViewModel.CodigoVerificacao))
+                texto.Append("Código de autenticação: ").AppendLine(ViewModel.CodigoVerificacao);
+            return new CampoMultilinha("Identificação", texto.ToString().Trim(), EstiloPadrao);
+        }
+
         private LinhaCampos CriarLinhaIdentificacao()
         {
             var linha = new LinhaCampos(EstiloPadrao, 0, Constantes.CampoAltura);
-            linha.ComCampo("Número", ViewModel.Numero)
-                .ComCampo("Série", ViewModel.Serie)
-                .ComCampo("Emissão", ViewModel.DataHoraEmissao.HasValue ? ViewModel.DataHoraEmissao.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty)
-                .ComCampo("Ambiente", ViewModel.IsHomologacao ? "Homologação" : "Produção")
-                .ComLarguras(20, 20, 30, 30);
+            linha.ComCampo("Número da NFS-e", ViewModel.Numero)
+                .ComCampo("Competência", ViewModel.Competencia.HasValue ? ViewModel.Competencia.Value.ToString("dd/MM/yyyy") : string.Empty)
+                .ComCampo("Data e hora de emissão", ViewModel.DataHoraEmissao.HasValue ? ViewModel.DataHoraEmissao.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty)
+                .ComCampo("Número da DPS", ViewModel.NumeroDps)
+                .ComCampo("Série da DPS", ViewModel.SerieDps)
+                .ComLarguras(20, 20, 25, 20, 15);
             return linha;
         }
 
         private CampoMultilinha CriarLinhaPrestador()
         {
-            return new CampoMultilinha("Prestador", FormatEmpresa(ViewModel.Prestador), EstiloPadrao);
+            var texto = new StringBuilder();
+            texto.Append("CNPJ / CPF / NIF: ").AppendLine(ViewModel.Prestador.CnpjCpf);
+            texto.Append("Inscrição Municipal: ").AppendLine(ViewModel.Prestador.IM);
+            texto.Append("Telefone: ").AppendLine(ViewModel.Prestador.Telefone);
+            texto.Append("Nome / Nome Empresarial: ").AppendLine(ViewModel.Prestador.RazaoSocial);
+            texto.Append("E-mail: ").AppendLine(ViewModel.Prestador.Email);
+            texto.Append("Endereço: ").AppendLine(BuildEndereco(ViewModel.Prestador));
+            texto.Append("Município: ").AppendLine(ViewModel.Prestador.Municipio);
+            texto.Append("CEP: ").AppendLine(ViewModel.Prestador.EnderecoCep);
+            texto.Append("Simples Nacional na Data de Competência: ").AppendLine(ViewModel.DescricaoSimplesNacional);
+            texto.Append("Regime de Apuração Tributária pelo SN: ").AppendLine(ViewModel.DescricaoRegimeEspecial);
+            return new CampoMultilinha("EMITENTE DA NFS-e", texto.ToString().Trim(), EstiloPadrao);
         }
 
         private CampoMultilinha CriarLinhaTomador()
         {
-            return new CampoMultilinha("Tomador", FormatEmpresa(ViewModel.Tomador), EstiloPadrao);
+            var texto = new StringBuilder();
+            texto.Append("CNPJ / CPF / NIF: ").AppendLine(ViewModel.Tomador.CnpjCpf);
+            texto.Append("Inscrição Municipal: ").AppendLine(ViewModel.Tomador.IM);
+            texto.Append("Telefone: ").AppendLine(ViewModel.Tomador.Telefone);
+            texto.Append("Nome / Nome Empresarial: ").AppendLine(ViewModel.Tomador.RazaoSocial);
+            texto.Append("E-mail: ").AppendLine(ViewModel.Tomador.Email);
+            texto.Append("Endereço: ").AppendLine(BuildEndereco(ViewModel.Tomador));
+            texto.Append("Município: ").AppendLine(ViewModel.Tomador.Municipio);
+            texto.Append("CEP: ").AppendLine(ViewModel.Tomador.EnderecoCep);
+            return new CampoMultilinha("TOMADOR DO SERVIÇO", texto.ToString().Trim(), EstiloPadrao);
         }
 
-        private CampoMultilinha CriarDiscriminacao()
+        private CampoMultilinha CriarServicoPrestado()
         {
             var texto = new StringBuilder();
-            if (!string.IsNullOrWhiteSpace(ViewModel.DiscriminacaoServico))
-                texto.AppendLine(ViewModel.DiscriminacaoServico);
+            if (!string.IsNullOrWhiteSpace(ViewModel.DescricaoTributacaoNacional))
+                texto.Append("Código de tributação nacional: ").AppendLine(ViewModel.DescricaoTributacaoNacional);
+
+            if (!string.IsNullOrWhiteSpace(ViewModel.DescricaoTributacaoMunicipal))
+                texto.Append("Código municipal: ").AppendLine(ViewModel.DescricaoTributacaoMunicipal);
 
             if (!string.IsNullOrWhiteSpace(ViewModel.MunicipioPrestacao))
-                texto.Append("Município da prestação: ").AppendLine(ViewModel.MunicipioPrestacao);
+                texto.Append("Local da prestação: ").AppendLine(ViewModel.MunicipioPrestacao);
+
+            if (!string.IsNullOrWhiteSpace(ViewModel.PaisPrestacao))
+                texto.Append("País da prestação: ").AppendLine(ViewModel.PaisPrestacao);
+
+            if (!string.IsNullOrWhiteSpace(ViewModel.DiscriminacaoServico))
+                texto.AppendLine(ViewModel.DiscriminacaoServico);
 
             if (!string.IsNullOrWhiteSpace(ViewModel.MunicipioIncidencia))
                 texto.Append("Município de incidência: ").AppendLine(ViewModel.MunicipioIncidencia);
 
-            return new CampoMultilinha("Discriminação do serviço", texto.ToString().Trim(), EstiloPadrao);
+            if (!string.IsNullOrWhiteSpace(ViewModel.DescricaoSimplesNacional))
+                texto.Append("Simples Nacional: ").AppendLine(ViewModel.DescricaoSimplesNacional);
+
+            return new CampoMultilinha("SERVIÇO PRESTADO", texto.ToString().Trim(), EstiloPadrao);
         }
 
-        private LinhaCampos CriarLinhaValores()
+        private CampoMultilinha CriarTributacaoMunicipal()
         {
-            var linha = new LinhaCampos(EstiloPadrao, 0, Constantes.CampoAltura);
-            linha.ComCampo("Valor do serviço", FormatCurrency(ViewModel.ValorServico))
-                .ComCampo("Deduções", FormatCurrency(ViewModel.ValorDeducoes))
-                .ComCampo("Líquido", FormatCurrency(ViewModel.ValorLiquido))
-                .ComCampo("ISSQN", FormatCurrency(ViewModel.ValorIssqn))
-                .ComLarguras(25, 25, 25, 25);
-            return linha;
+            var texto = new StringBuilder();
+            if (!string.IsNullOrWhiteSpace(ViewModel.DescricaoTributacaoMunicipal))
+                texto.Append("Tributação do ISSQN: ").AppendLine(ViewModel.DescricaoTributacaoMunicipal);
+            if (!string.IsNullOrWhiteSpace(ViewModel.PaisTomador))
+                texto.Append("País Resultado da Prestação do Serviço: ").AppendLine(ViewModel.PaisTomador);
+            if (!string.IsNullOrWhiteSpace(ViewModel.MunicipioIncidencia))
+                texto.Append("Município de Incidência do ISSQN: ").AppendLine(ViewModel.MunicipioIncidencia);
+            if (!string.IsNullOrWhiteSpace(ViewModel.DescricaoRegimeEspecial))
+                texto.Append("Regime Especial de Tributação: ").AppendLine(ViewModel.DescricaoRegimeEspecial);
+            if (!string.IsNullOrWhiteSpace(ViewModel.DescricaoSimplesNacional))
+                texto.Append("Tipo de Imunidade: ").AppendLine(ViewModel.DescricaoSimplesNacional);
+            if (!string.IsNullOrWhiteSpace(ViewModel.DescricaoRetencaoIssqn))
+                texto.Append("Retenção do ISSQN: ").AppendLine(ViewModel.DescricaoRetencaoIssqn);
+            texto.Append("Suspensão da Exigibilidade do ISSQN: ").AppendLine("-");
+            texto.Append("Número Processo Suspensão: ").AppendLine("-");
+            texto.Append("Benefício Municipal: ").AppendLine("-");
+            texto.Append("Valores:").AppendLine();
+            texto.Append("Valor do serviço: ").AppendLine(FormatCurrency(ViewModel.ValorServico));
+            texto.Append("Base de cálculo: ").AppendLine(FormatCurrency(ViewModel.BaseCalculo));
+            texto.Append("Alíquota: ").AppendLine(FormatPercent(ViewModel.AliquotaIssqn));
+            texto.Append("ISSQN: ").AppendLine(FormatCurrency(ViewModel.ValorIssqn));
+            texto.Append("Valor de cálculo do BM: ").AppendLine(FormatCurrency(ViewModel.ValorCalcBm));
+            texto.Append("Base de cálculo do BM: ").AppendLine(FormatCurrency(ViewModel.BaseCalculoBm));
+
+            return new CampoMultilinha("TRIBUTAÇÃO MUNICIPAL", texto.ToString().Trim(), EstiloPadrao);
+        }
+
+        private CampoMultilinha CriarTributacaoFederal()
+        {
+            var texto = new StringBuilder();
+            texto.Append("IRRF: ").AppendLine(FormatCurrency(ViewModel.ValorIrff));
+            texto.Append("Contribuições: ").AppendLine(FormatCurrency(ViewModel.ValorContribuicoes));
+            texto.Append("PIS / COFINS: ").AppendLine(FormatCurrency(ViewModel.ValorPisCofins));
+            if (!string.IsNullOrWhiteSpace(ViewModel.DescricaoRetencaoFederal))
+                texto.Append("Descrição Contrib. Sociais - Retidas: ").AppendLine(ViewModel.DescricaoRetencaoFederal);
+            return new CampoMultilinha("TRIBUTAÇÃO FEDERAL", texto.ToString().Trim(), EstiloPadrao);
+        }
+
+        private CampoMultilinha CriarTotais()
+        {
+            var texto = new StringBuilder();
+            texto.Append("Valor do serviço: ").AppendLine(FormatCurrency(ViewModel.ValorServico));
+            texto.Append("Desconto Condicionado: ").AppendLine(FormatCurrency(ViewModel.ValorDescontoCondicionado));
+            texto.Append("Desconto Incondicionado: ").AppendLine(FormatCurrency(ViewModel.ValorDescontoIncondicionado));
+            texto.Append("ISSQN Retido: ").AppendLine(ViewModel.DescricaoRetencaoIssqn ?? "-");
+            texto.Append("Total das Retenções Federais: ").AppendLine(FormatCurrency(ViewModel.ValorRetencoes));
+            texto.Append("PIS/COFINS - Débito Apur. Própria: ").AppendLine(FormatCurrency(ViewModel.ValorPisCofins));
+            texto.Append("Retenções: ").AppendLine(FormatCurrency(ViewModel.ValorRetencoes));
+            texto.Append("Valor líquido: ").AppendLine(FormatCurrency(ViewModel.ValorLiquido));
+            return new CampoMultilinha("VALOR TOTAL DA NFS-e", texto.ToString().Trim(), EstiloPadrao);
+        }
+
+        private CampoMultilinha CriarTotaisTributos()
+        {
+            var texto = new StringBuilder();
+            texto.Append("Federais: ").AppendLine(FormatCurrency(ViewModel.ValorTotalTributosFederais));
+            texto.Append("Estaduais: ").AppendLine(FormatCurrency(ViewModel.ValorTotalTributosEstaduais));
+            texto.Append("Municipais: ").AppendLine(FormatCurrency(ViewModel.ValorTotalTributosMunicipais));
+            return new CampoMultilinha("TOTAIS DE TRIBUTOS", texto.ToString().Trim(), EstiloPadrao);
         }
 
         private CampoMultilinha CriarObservacoes()
@@ -172,7 +271,7 @@ namespace Zion.NFe.Danfe.Nfse
             if (!string.IsNullOrWhiteSpace(ViewModel.InformacoesComplementares))
                 texto.Append(ViewModel.InformacoesComplementares);
 
-            return new CampoMultilinha("Informações complementares", texto.ToString().Trim(), EstiloPadrao);
+            return new CampoMultilinha("INFORMAÇÕES COMPLEMENTARES", texto.ToString().Trim(), EstiloPadrao);
         }
 
         private static string FormatEmpresa(Zion.NFe.Danfe.Modelo.EmpresaViewModel empresa)
@@ -193,10 +292,30 @@ namespace Zion.NFe.Danfe.Nfse
             return sb.ToString().Trim();
         }
 
+        private static string BuildEndereco(Zion.NFe.Danfe.Modelo.EmpresaViewModel empresa)
+        {
+            if (empresa == null) return string.Empty;
+
+            var sb = new StringBuilder();
+            if (!string.IsNullOrWhiteSpace(empresa.EnderecoLogadrouro)) sb.Append(empresa.EnderecoLogadrouro);
+            if (!string.IsNullOrWhiteSpace(empresa.EnderecoNumero)) sb.Append(", ").Append(empresa.EnderecoNumero);
+            if (!string.IsNullOrWhiteSpace(empresa.EnderecoComplemento)) sb.Append(" - ").Append(empresa.EnderecoComplemento);
+            if (!string.IsNullOrWhiteSpace(empresa.EnderecoBairro)) sb.Append(" - ").Append(empresa.EnderecoBairro);
+            if (!string.IsNullOrWhiteSpace(empresa.Municipio)) sb.Append(" - ").Append(empresa.Municipio);
+            if (!string.IsNullOrWhiteSpace(empresa.EnderecoUf)) sb.Append(" - ").Append(empresa.EnderecoUf);
+            return sb.ToString();
+        }
+
         private static string FormatCurrency(decimal? value)
         {
             if (!value.HasValue) return string.Empty;
             return value.Value.ToString("C", CultureInfo.GetCultureInfo("pt-BR"));
+        }
+
+        private static string FormatPercent(decimal? value)
+        {
+            if (!value.HasValue) return string.Empty;
+            return value.Value.ToString("0.00") + "%";
         }
 
         public void Salvar(string path)

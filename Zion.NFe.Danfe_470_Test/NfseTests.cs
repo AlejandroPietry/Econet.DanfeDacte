@@ -74,5 +74,18 @@ namespace Zion.NFe.Danfe_470_Test
             Assert.IsNotNull(pdfBytes);
             Assert.IsTrue(pdfBytes.Length > 0);
         }
+
+        [TestMethod]
+        public void GerarNfsePdfDeXml_ExemploArquivo_RetornaBytes()
+        {
+            var xmlPath = Path.Combine("Xml", "NFSe", "exemplo-2026-01-08.xml");
+            Assert.IsTrue(File.Exists(xmlPath), $"Arquivo de exemplo não encontrado: {xmlPath}");
+
+            var xml = File.ReadAllText(xmlPath);
+            var pdfBytes = GeradorPdf.GerarNfsePdfDeXml(xml);
+
+            Assert.IsNotNull(pdfBytes);
+            Assert.IsTrue(pdfBytes.Length > 0);
+        }
     }
 }

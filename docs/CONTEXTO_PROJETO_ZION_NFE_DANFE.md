@@ -177,6 +177,7 @@ Essa proposta está documentada em [docs/ARQUITETURA_NFSE_NO_MOTOR_DANFE_DACTE.m
 
 O suporte atual é o primeiro corte funcional do módulo, com parser tolerante de XML e renderização em PDF usando o motor gráfico existente.
 Há também um XML de exemplo salvo para testes e validação em [Zion.NFe.Danfe_470_Test/Xml/NFSe/exemplo-2026-01-08.xml](../Zion.NFe.Danfe_470_Test/Xml/NFSe/exemplo-2026-01-08.xml).
+O preview da NFS-e é gerado com marca d'água `MODELO` / `SEM VALOR FISCAL`.
 
 ## Resumo operacional
 

@@ -75,13 +75,21 @@ namespace Zion.NFe.Danfe.Nfse.Modelo
             {
                 Numero = FirstValue(infNFSe, "nNFSe") ?? FirstValue(infDps, "nDPS"),
                 Serie = FirstValue(infDps, "serie"),
+                NumeroDps = FirstValue(infDps, "nDPS"),
+                SerieDps = FirstValue(infDps, "serie"),
                 ChaveAcesso = FirstAttributeValue(infNFSe, "Id") ?? FirstAttributeValue(infDps, "Id") ?? FirstValue(infNFSe, "Id") ?? FirstValue(infDps, "Id"),
                 CodigoVerificacao = FirstValue(infNFSe, "cVerif") ?? FirstValue(infDps, "cVerif"),
                 TipoAmbiente = FirstInt(infNFSe, 1, "ambGer", "tpAmb"),
                 DataHoraEmissao = FirstDateTime(infNFSe, "dhProc"),
+                Competencia = FirstDateTime(infDps, "dCompet"),
                 ProtocoloAutorizacao = BuildProtocolo(FirstValue(FindElement(infNFSe, "infProt") ?? infNFSe, "nProt"), FirstDateTime(FindElement(infNFSe, "infProt") ?? infNFSe, "dhRecbto")),
                 MunicipioPrestacao = FirstValue(infDps, "cLocPrestacao") ?? FirstValue(infNFSe, "xLocPrestacao"),
-                MunicipioIncidencia = FirstValue(infNFSe, "cLocIncid") ?? FirstValue(infNFSe, "xLocIncid")
+                MunicipioIncidencia = FirstValue(infNFSe, "cLocIncid") ?? FirstValue(infNFSe, "xLocIncid"),
+                PaisPrestacao = FirstValue(infDps, "serv", "locPrest", "cPaisPrestacao"),
+                PaisTomador = FirstValue(FindElement(infDps, "toma"), "end", "endExt", "cPais"),
+                NaturezaTributacaoMunicipal = BuildTributacaoMunicipal(infDps),
+                DescricaoRetencaoIssqn = BuildDescricaoRetencaoIssqn(infDps),
+                DescricaoRetencaoFederal = BuildDescricaoRetencaoFederal(infDps),
             };
 
             if (dps != null)
@@ -96,10 +104,21 @@ namespace Zion.NFe.Danfe.Nfse.Modelo
                 model.DiscriminacaoServico = FirstValue(serv, "xDescServ") ?? FirstValue(serv, "xDiscr") ?? FirstValue(serv, "xInfComp");
                 model.InformacoesComplementares = FirstValue(serv, "xInfComp") ?? FirstValue(infDps, "xInfComp") ?? FirstValue(infNFSe, "xOutInf");
                 model.ValorServico = FirstDecimal(valores, "vServPrest", "vServ");
+                model.ValorDescontoCondicionado = FirstDecimal(valores, "vDescCondIncond", "vDescCond");
+                model.ValorDescontoIncondicionado = FirstDecimal(valores, "vDescCondIncond", "vDescIncond");
                 model.ValorDeducoes = FirstDecimal(valores, "vDescCondIncond", "vDescIncond");
                 model.ValorLiquido = FirstDecimal(valores, "vLiq");
                 model.ValorIssqn = FirstDecimal(valores, "vISSQN");
                 model.AliquotaIssqn = FirstDecimal(valores, "pAliqAplic");
+                model.BaseCalculo = FirstDecimal(infNFSe, "vBC") ?? FirstDecimal(valores, "vBC");
+                model.ValorRetencoes = FirstDecimal(infNFSe, "vTotalRet") ?? FirstDecimal(valores, "vTotalRet");
+                model.DescricaoTributacaoNacional = BuildTributacaoNacional(infDps, infNFSe);
+                model.DescricaoTributacaoMunicipal = BuildTributacaoMunicipal(infDps);
+                model.DescricaoSimplesNacional = BuildSimplesNacional(infDps);
+                model.DescricaoRegimeEspecial = BuildRegimeEspecial(infDps);
+                model.ValorTotalTributosFederais = FirstDecimal(infDps, "valores", "trib", "totTrib", "vTotTrib", "vTotTribFed");
+                model.ValorTotalTributosEstaduais = FirstDecimal(infDps, "valores", "trib", "totTrib", "vTotTrib", "vTotTribEst");
+                model.ValorTotalTributosMunicipais = FirstDecimal(infDps, "valores", "trib", "totTrib", "vTotTrib", "vTotTribMun");
             }
             else
             {
@@ -108,10 +127,14 @@ namespace Zion.NFe.Danfe.Nfse.Modelo
                 model.DiscriminacaoServico = FirstValue(infNFSe, "xDiscr") ?? FirstValue(infNFSe, "xDescServ");
                 model.InformacoesComplementares = FirstValue(infNFSe, "xOutInf");
                 model.ValorServico = FirstDecimal(infNFSe, "vServ");
+                model.ValorDescontoCondicionado = FirstDecimal(infNFSe, "vDescCond");
+                model.ValorDescontoIncondicionado = FirstDecimal(infNFSe, "vDescIncond");
                 model.ValorDeducoes = FirstDecimal(infNFSe, "vDeducoes");
                 model.ValorLiquido = FirstDecimal(infNFSe, "vLiq");
                 model.ValorIssqn = FirstDecimal(infNFSe, "vISSQN");
                 model.AliquotaIssqn = FirstDecimal(infNFSe, "pAliqAplic");
+                model.BaseCalculo = FirstDecimal(infNFSe, "vBC");
+                model.ValorRetencoes = FirstDecimal(infNFSe, "vTotalRet");
             }
 
             if (string.IsNullOrWhiteSpace(model.ChaveAcesso))
@@ -271,6 +294,122 @@ namespace Zion.NFe.Danfe.Nfse.Modelo
             if (digits.Length == 11 || digits.Length == 14)
                 return Formatador.FormatarCpfCnpj(digits);
             return value;
+        }
+
+        private static string BuildTributacaoNacional(XElement infDps, XElement infNFSe)
+        {
+            var cTribNac = FirstValue(infDps, "serv", "cServ", "cTribNac") ?? FirstValue(infNFSe, "xTribNac");
+            var xTribNac = FirstValue(infNFSe, "xTribNac");
+            if (string.IsNullOrWhiteSpace(cTribNac) && string.IsNullOrWhiteSpace(xTribNac)) return null;
+            if (string.IsNullOrWhiteSpace(cTribNac)) return xTribNac;
+            if (string.IsNullOrWhiteSpace(xTribNac)) return cTribNac;
+            return $"{cTribNac} - {xTribNac}";
+        }
+
+        private static string BuildTributacaoMunicipal(XElement infDps)
+        {
+            var tribMun = FindElement(infDps, "tribMun");
+            var trib = FirstValue(tribMun, "tribISSQN");
+            if (string.IsNullOrWhiteSpace(trib)) return null;
+            switch (trib.Trim())
+            {
+                case "1":
+                    return "Operação tributável";
+                case "2":
+                    return "Imunidade";
+                case "3":
+                    return "Exportação de serviço";
+                case "4":
+                    return "Não incidência";
+                default:
+                    return trib;
+            }
+        }
+
+        private static string BuildDescricaoRetencaoIssqn(XElement infDps)
+        {
+            var tribMun = FindElement(infDps, "tribMun");
+            var tpRet = FirstValue(tribMun, "tpRetISSQN");
+            if (string.IsNullOrWhiteSpace(tpRet)) return null;
+
+            switch (tpRet.Trim())
+            {
+                case "1":
+                    return "Não Retido";
+                case "2":
+                    return "Retido pelo Tomador";
+                case "3":
+                    return "Retido pelo Intermediário";
+                default:
+                    return tpRet;
+            }
+        }
+
+        private static string BuildDescricaoRetencaoFederal(XElement infDps)
+        {
+            var piscofins = FindElement(infDps, "piscofins");
+            var tp = FirstValue(piscofins, "tpRetPisCofins");
+            if (string.IsNullOrWhiteSpace(tp)) return null;
+
+            switch (tp.Trim())
+            {
+                case "0":
+                    return "PIS/COFINS/CSLL Não Retidos";
+                case "1":
+                    return "PIS/COFINS Retidos";
+                case "2":
+                    return "PIS/COFINS Não Retidos";
+                case "3":
+                    return "PIS/COFINS/CSLL Retidos";
+                default:
+                    return tp;
+            }
+        }
+
+        private static string BuildSimplesNacional(XElement infDps)
+        {
+            var regTrib = FindElement(infDps, "regTrib");
+            var opSimpNac = FirstValue(regTrib, "opSimpNac");
+            if (string.IsNullOrWhiteSpace(opSimpNac)) return null;
+
+            switch (opSimpNac.Trim())
+            {
+                case "1":
+                    return "Não optante";
+                case "2":
+                    return "Optante - Microempreendedor Individual (MEI)";
+                case "3":
+                    return "Optante - Microempresa ou Empresa de Pequeno Porte (ME/EPP)";
+                default:
+                    return opSimpNac;
+            }
+        }
+
+        private static string BuildRegimeEspecial(XElement infDps)
+        {
+            var regTrib = FindElement(infDps, "regTrib");
+            var regEspTrib = FirstValue(regTrib, "regEspTrib");
+            if (string.IsNullOrWhiteSpace(regEspTrib)) return null;
+
+            switch (regEspTrib.Trim())
+            {
+                case "0":
+                    return "Nenhum";
+                case "1":
+                    return "Ato Cooperado (Cooperativa)";
+                case "2":
+                    return "Estimativa";
+                case "3":
+                    return "Microempresa Municipal";
+                case "4":
+                    return "Notário ou Registrador";
+                case "5":
+                    return "Profissional Autônomo";
+                case "6":
+                    return "Sociedade de Profissionais";
+                default:
+                    return regEspTrib;
+            }
         }
     }
 }
