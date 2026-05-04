@@ -91,6 +91,7 @@ namespace Zion.NFe.Danfe.Elementos
             {
                 AlinhamentoVertical = AlinhamentoVertical.Topo,
                 AlinhamentoHorizontal = AlinhamentoHorizontal.Centro,
+                LineHeightScale = 1F,
                 VerticalOffset = Estilo.OffsetSubtituloDocumentoPrincipal + Estilo.OffsetNumeroSerieDanfe
             }
             .AddLine("Nº.: " + ViewModel.NfNumero.ToString(Formatador.FormatoNumeroNF), f4)
