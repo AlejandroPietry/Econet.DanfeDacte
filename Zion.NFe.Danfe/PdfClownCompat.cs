@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace org.pdfclown.bytes
 {
@@ -210,35 +211,101 @@ namespace org.pdfclown.documents.contents.fonts
 
         private sealed class CrossPlatformFontResolver : IFontResolver
         {
-            private const string DefaultFallbackFont = "DejaVu Sans";
+            private const string DefaultFallbackFont = "Zion Embedded Lato";
+            private const string EmbeddedRegular = "ZionEmbeddedLato-Regular";
+            private const string EmbeddedBold = "ZionEmbeddedLato-Bold";
+            private const string EmbeddedItalic = "ZionEmbeddedLato-Italic";
+            private const string EmbeddedBoldItalic = "ZionEmbeddedLato-BoldItalic";
+
+            private static readonly IReadOnlyDictionary<string, string> EmbeddedResources = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                [EmbeddedRegular] = "Zion.NFe.Danfe.Fonts.Lato-Regular.ttf",
+                [EmbeddedBold] = "Zion.NFe.Danfe.Fonts.Lato-Bold.ttf",
+                [EmbeddedItalic] = "Zion.NFe.Danfe.Fonts.Lato-Italic.ttf",
+                [EmbeddedBoldItalic] = "Zion.NFe.Danfe.Fonts.Lato-BoldItalic.ttf"
+            };
+
             private readonly PdfSharpCore.Utils.FontResolver _resolver = new PdfSharpCore.Utils.FontResolver
             {
-                NullIfFontNotFound = false
+                NullIfFontNotFound = true
             };
 
             public string DefaultFontName => DefaultFallbackFont;
 
             public byte[] GetFont(string faceName)
             {
-                return _resolver.GetFont(faceName);
+                if (EmbeddedResources.TryGetValue(faceName, out var resourceName))
+                {
+                    return ReadEmbeddedFont(resourceName);
+                }
+
+                return _resolver.GetFont(faceName) ?? ReadEmbeddedFont(EmbeddedResources[EmbeddedRegular]);
             }
 
             public FontResolverInfo ResolveTypeface(string familyName, bool isBold, bool isItalic)
             {
                 foreach (var candidate in GetCandidates(familyName))
                 {
-                    var resolved = PlatformFontResolver.ResolveTypeface(candidate, isBold, isItalic);
-                    if (resolved != null)
+                    try
                     {
-                        return resolved;
+                        var resolved = PlatformFontResolver.ResolveTypeface(candidate, isBold, isItalic);
+                        if (resolved != null)
+                        {
+                            return resolved;
+                        }
+                    }
+                    catch (FileNotFoundException)
+                    {
+                    }
+                    catch (InvalidOperationException)
+                    {
                     }
                 }
 
-                return _resolver.ResolveTypeface(DefaultFallbackFont, isBold, isItalic);
+                return new FontResolverInfo(GetEmbeddedFaceName(isBold, isItalic));
+            }
+
+            private static string GetEmbeddedFaceName(bool isBold, bool isItalic)
+            {
+                if (isBold && isItalic)
+                {
+                    return EmbeddedBoldItalic;
+                }
+
+                if (isBold)
+                {
+                    return EmbeddedBold;
+                }
+
+                if (isItalic)
+                {
+                    return EmbeddedItalic;
+                }
+
+                return EmbeddedRegular;
+            }
+
+            private static byte[] ReadEmbeddedFont(string resourceName)
+            {
+                var assembly = typeof(StandardType1Font).GetTypeInfo().Assembly;
+                using var stream = assembly.GetManifestResourceStream(resourceName);
+                if (stream == null)
+                {
+                    throw new FileNotFoundException($"Fonte embutida não encontrada: {resourceName}", resourceName);
+                }
+
+                using var memoryStream = new MemoryStream();
+                stream.CopyTo(memoryStream);
+                return memoryStream.ToArray();
             }
 
             private static IEnumerable<string> GetCandidates(string familyName)
             {
+                if (string.Equals(familyName, DefaultFallbackFont, StringComparison.OrdinalIgnoreCase))
+                {
+                    yield break;
+                }
+
                 if (string.Equals(familyName, "Times New Roman", StringComparison.OrdinalIgnoreCase))
                 {
                     yield return "Times New Roman";
