@@ -19,6 +19,24 @@ namespace ZionDanfe.WebService.Controllers
             return File(bytesPdf, "Application/pdf", $"{modelo.ChaveAcesso}.pdf");
         }
 
+        [HttpGet("/api/xml/pdf/gerar-danfe-avancado")]
+        public IActionResult GerarDanfeAvancado()
+        {
+            string xml = System.IO.File.ReadAllText(@"C:\Users\pietr\Downloads\000029458.xml");
+            byte[] pdfBytes;
+            var modelo = DanfeViewModelCreator.CriarDeStringXml(xml);
+            modelo.DefinirTextoCreditos("Nfe empresa tal!");
+            using (var memoryStream = new MemoryStream())
+            using (var danfe = new DanfeDoc(modelo))
+            {
+                danfe.Gerar();
+               
+                pdfBytes = danfe.ObterPdfBytes(memoryStream);
+            }
+
+            return File(pdfBytes, "Application/pdf", $"{modelo.ChaveAcesso}.pdf");
+        }
+
         [HttpGet("/api/xml/pdf/gerar-dacte")]
         public IActionResult GerarDacte()
         {
